@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/css/nav.css">
     <title>IPO Admin Dashboard</title>
 </head>
 <body>
+    <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <h2>Bluestock Fintech</h2>
         </div>
         <ul class="nav-links">
             <li><a href="#dashboard" class="active" data-target="dashboard-section">Dashboard</a></li>
-            <li><a href="#manage_ipo.html" data-target="manage-ipo-section">Manage IPO</a></li>
+            <li><a href="/html/manage_ipo.html" data-target="manage-ipo-section">Manage IPO</a></li>
             <li><a href="#ipo-subscription" data-target="ipo-subscription-section">IPO Subscription</a></li>
             <li><a href="#ipo-allotment" data-target="ipo-allotment-section">IPO Allotment</a></li>
             <li class="separator"></li>
@@ -23,9 +25,19 @@
             <li><a href="#help" data-target="help-section">Help</a></li>
         </ul>
     </div>
+
+    <!-- Main content -->
     <div class="main-content">
         <header>
             <div class="top-bar">
+                <!-- Hamburger Button -->
+                <button class="hamburger" id="hamburger-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                
                 <h1>IPO Admin Dashboard</h1>
                 <div class="user-info">
                     <span>Hi, Vishal</span>
@@ -33,7 +45,7 @@
             </div>
         </header>
 
-        <!-- Sections -->
+        <!-- Sections (same as before) -->
         <section id="dashboard-section" class="content-section active">
             <h2>Dashboard</h2>
             <p>Welcome to the Dashboard! Here you can view key metrics and insights.</p>
@@ -74,6 +86,7 @@
             <p>Find FAQs and support documentation in this section.</p>
         </section>
     </div>
+
     <script src="/js/nav.js"></script>
 </body>
 </html>
