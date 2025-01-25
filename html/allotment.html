@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPO Allotment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="allotment.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3 class="brand-name">Bluestock Fintech</h3>
+      </div>
+      <ul class="menu">
+        <li><a href="dashboard.html"><i class="icon">📊</i> Dashboard</a></li>
+        <li><a href="manage_ipo.html"><i class="icon">📂</i> Manage IPO</a></li>
+        <li><a href="ipo_subscription.html"><i class="icon">📈</i> IPO Subscription</a></li>
+        <li><a href="ipo_allotment.html" class="active"><i class="icon">📊</i> IPO Allotment</a></li>
+        <li class="menu-title">OTHERS</li>
+        <li><a href="settings.html"><i class="icon">⚙️</i> Settings</a></li>
+        <li><a href="api_manager.html"><i class="icon">🔗</i> API Manager</a></li>
+        <li><a href="accounts.html"><i class="icon">👤</i> Accounts</a></li>
+        <li><a href="help.html"><i class="icon">❓</i> Help</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header">
+        <div class="search-container">
+          <input type="text" class="search-bar" placeholder="Search">
+        </div>
+        <div class="user-profile">
+          <span>Hi, Vishal</span>
+          <img src="user-avatar.png" alt="User Avatar" class="user-avatar">
+        </div>
+      </div>
+      <div class="page-content">
+        <h1>IPO Allotment</h1>
+        <p>Track and view all IPO allotment details below.</p>
+
+        <!-- IPO Allotment Table -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>IPO Name</th>
+                <th>Allotment Status</th>
+                <th>Allotted Shares</th>
+                <th>Allotment Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ABC Technologies</td>
+                <td><span class="status allotted">Allotted</span></td>
+                <td>100</td>
+                <td>2025-01-20</td>
+              </tr>
+              <tr>
+                <td>XYZ Finserv</td>
+                <td><span class="status pending">Pending</span></td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>LMN Healthcare</td>
+                <td><span class="status rejected">Rejected</span></td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
