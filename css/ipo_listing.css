@@ -7,14 +7,14 @@ body {
     min-height: 100vh;
   }
   
-  .nav-item a {
-    font-size: 0.85rem; /* Adjust font size */
-    padding: 0.5rem 0.75rem; /* Maintain proper spacing */
+   .nav-item a {
+    font-size: 0.85rem; 
+    padding: 0.5rem 0.75rem; 
   }
   
   .nav {
     padding-left: 2rem;
-  }
+  } 
   
   .twoButton {
     padding-left: 2rem;
@@ -152,3 +152,8 @@ body {
   .all-title {
     padding-left: 1%;
   }
+  
+
+
+ 
+  
