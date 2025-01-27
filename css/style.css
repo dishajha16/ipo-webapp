@@ -1,4 +1,4 @@
-/* styles.css */
+/* General Styles */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -14,7 +14,15 @@ body {
     display: flex;
     flex-direction: column;
     padding-top: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: left 0.3s ease;
+}
+
+.sidebar.active {
+    left: -260px;
 }
 
 .logo {
@@ -23,17 +31,11 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #FF6B6B;
-    border-bottom: 1px solid #2F3542;
 }
 
 .nav-links {
     list-style: none;
     padding: 0;
-    margin: 0;
-}
-
-.nav-links li {
-    width: 100%;
 }
 
 .nav-links a {
@@ -41,160 +43,82 @@ body {
     color: white;
     display: block;
     padding: 12px 20px;
-    font-size: 15px;
-    border-left: 4px solid transparent;
     transition: all 0.3s ease;
 }
 
-.nav-links a.active,
-.nav-links a:hover {
+.nav-links a.active {
     background-color: #2F3542;
     border-left: 4px solid #FF6B6B;
-}
-
-.separator {
-    height: 1px;
-    background: #444;
-    margin: 10px 0;
 }
 
 .main-content {
     flex-grow: 1;
     background-color: #F4F4F8;
     padding: 20px;
-    overflow-y: auto;
-}
-
-header {
-    background-color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-}
-
-header .top-bar h1 {
-    margin: 0;
-    font-size: 20px;
-    color: #1A1A2E;
-}
-
-header .user-info {
-    font-size: 16px;
-    color: #555;
+    margin-left: 260px;
 }
 
 .content-section {
     display: none;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .content-section.active {
     display: block;
 }
-/* Manage IPO Section */
-.register-btn {
-    float: right;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: block;
+    position: fixed;
+    top: 0px; /* Adjust vertical placement */
+    left: 0px; /* Push to the right of the sidebar */
+    z-index: 1000;
     cursor: pointer;
-    font-size: 14px;
-}
-
-.register-btn:hover {
-    background-color: #45a049;
-}
-
-.ipo-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.ipo-table th,
-.ipo-table td {
-    text-align: left;
-    padding: 12px;
-    border: 1px solid #ddd;
-}
-
-.ipo-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.ipo-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.status {
-    padding: 5px 10px;
+    background-color: #1A1A2E; /* Matches the sidebar background */
+    padding: 10px;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white; /* Matches the sidebar text color */
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Sidebar Initial State */
+.sidebar {
+    width: 260px;
+    background-color: #1A1A2E;
     color: white;
-    font-size: 12px;
-}
-
-.status.ongoing {
-    background-color: #28a745;
-}
-
-.status.coming {
-    background-color: #ffc107;
-}
-
-.status.new-listed {
-    background-color: #dc3545;
-}
-
-.action-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.action-btn.update {
-    background-color: #007bff;
-}
-
-.action-btn.view {
-    background-color: #17a2b8;
-}
-
-.pagination {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    margin-top: 20px;
+    flex-direction: column;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.page-btn {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    background-color: white;
-    cursor: pointer;
-    border-radius: 5px;
+.sidebar.active {
+    left: -260px;
 }
 
-.page-btn.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    background-color: #F4F4F8;
+    padding: 20px;
+    margin-left: 260px;
+    transition: margin-left 0.3s ease;
 }
 
-.page-btn:hover {
-    background-color: #f4f4f4;
+.sidebar.active ~ .main-content {
+    margin-left: 0;
 }
-
