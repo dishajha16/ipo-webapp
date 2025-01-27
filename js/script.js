@@ -1,23 +1,28 @@
-// script.js
-const navLinks = document.querySelectorAll('.nav-links a');
-const sections = document.querySelectorAll('.content-section');
+// Hamburger Menu Toggle
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const sidebar = document.querySelector('.sidebar');
 
-// Handle navigation and section display
-navLinks.forEach(link => {
+hamburgerMenu.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+// Navigation Functionality
+document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // Remove active class from all links
-        navLinks.forEach(nav => nav.classList.remove('active'));
-        // Add active class to clicked link
+        // Remove "active" from all links
+        document.querySelectorAll('.nav-links a').forEach(item => item.classList.remove('active'));
+
+        // Add "active" to the clicked link
         this.classList.add('active');
 
-        // Hide all sections
-        sections.forEach(section => section.classList.remove('active'));
+        // Show the relevant section
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.classList.remove('active');
+        });
 
-        // Show the targeted section
-        const targetId = this.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
+        const target = document.getElementById(this.getAttribute('data-target'));
+        if (target) target.classList.add('active');
     });
 });
-
