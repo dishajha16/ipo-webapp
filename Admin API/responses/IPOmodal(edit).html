@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming IPO Information</title>
+  <link rel="stylesheet" href="/css/IPO_model_edit.css">
+</head>
+<body>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>Upcoming IPO Information</h1>
+        <div class="action-buttons">
+          <button class="register">Register</button>
+          <button class="cancel" id="cancel">Cancel</button>
+        </div>
+      </header>
+
+      <section class="form-container">
+        <!-- IPO Information -->
+        <div class="form-header">IPO Information</div>
+        <form id="ipo-form">
+          <!-- Logo Upload -->
+          <div class="form-group logo-section">
+            <label>Company Logo</label>
+            <div class="logo-actions">
+              <img src="placeholder-logo.png" alt="Company Logo" class="company-logo">
+              <button type="button" class="upload-btn">Upload Logo</button>
+              <button type="button" class="delete-btn">Delete</button>
+            </div>
+          </div>
+
+          <!-- IPO Details Grid -->
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" placeholder="Enter company name" id="company-name" required>
+            </div>
+            <div class="form-group">
+              <label>Price Band</label>
+              <input type="text" placeholder="Enter price band" id="price-band" required>
+            </div>
+            <div class="form-group">
+              <label>Open</label>
+              <input type="date" id="open-date" required>
+            </div>
+            <div class="form-group">
+              <label>Close</label>
+              <input type="date" id="close-date" required>
+            </div>
+            <div class="form-group">
+              <label>Issue Size</label>
+              <input type="text" placeholder="Enter issue size (e.g., 2300 Cr)" id="issue-size" required>
+            </div>
+            <div class="form-group">
+              <label>Issue Type</label>
+              <select id="issue-type" required>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+                <option value="rights">Rights</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Listing Date</label>
+              <input type="date" id="listing-date" required>
+            </div>
+            <div class="form-group">
+              <label>Status</label>
+              <select id="status" required>
+                <option value="not-issued">Not Issued</option>
+                <option value="listed">Listed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Listed IPO Details -->
+          <div class="form-header">New Listed IPO Details (When IPO Gets Listed)</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>IPO Price</label>
+              <input type="text" placeholder="Enter IPO price (e.g., ₹383)" id="ipo-price" required>
+            </div>
+            <div class="form-group">
+              <label>Listing Price</label>
+              <input type="text" placeholder="Enter listing price (e.g., ₹435)" id="listing-price" required>
+            </div>
+            <div class="form-group">
+              <label>Listing Gain</label>
+              <input type="text" placeholder="Enter listing gain (e.g., 13.58%)" id="listing-gain" required>
+            </div>
+            <div class="form-group">
+              <label>Listing Date</label>
+              <input type="date" id="listed-date" required>
+            </div>
+            <div class="form-group">
+              <label>CMP</label>
+              <input type="text" placeholder="Enter CMP (e.g., ₹410)" id="cmp" required>
+            </div>
+            <div class="form-group">
+              <label>Current Return</label>
+              <input type="text" placeholder="Enter current return (e.g., 7.05%)" id="current-return" required>
+            </div>
+            <div class="form-group">
+              <label>RHP</label>
+              <input type="url" placeholder="Enter RHP PDF link" id="rhp" required>
+            </div>
+            <div class="form-group">
+              <label>DRHP</label>
+              <input type="url" placeholder="Enter DRHP PDF link" id="drhp" required>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Success Message -->
+      <div id="success-message" style="display: none; text-align: center; font-size: 18px; color: green; margin-top: 20px;">
+        Your form has been successfully registered!
+      </div>
+
+    </main>
+    
+
+  <script src="/js/IPOmodel(edit).js"></script>
+</body>
+</html>

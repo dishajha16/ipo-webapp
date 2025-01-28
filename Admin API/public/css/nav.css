@@ -1,0 +1,115 @@
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #343a40;
+    color: white;
+    padding-top: 60px;
+    transform: translateX(-250px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar .logo h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+.sidebar .nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .nav-links li {
+    margin: 10px 0;
+}
+
+.sidebar .nav-links li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.sidebar .nav-links li a.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100; /* Make sure it stays on top */
+    position: relative; /* Make sure it stays in the top bar */
+}
+
+.hamburger span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #000;
+}
+
+/* Show hamburger menu on screens up to 1200px wide */
+@media (max-width: 2500px) {
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* Main content area */
+.main-content {
+    
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.shift {
+    margin-left: 0;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+    margin-top: 50px;
+}
+
+/* Style for the top bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    position: fixed; /* Fixes the top bar at the top */
+    width: 1400px; /* Ensures it spans the entire width */
+    top: 0;
+    z-index: 10; /* Keep it above the sidebar */
+}
+
+.top-bar h1 {
+    margin: 0;
+}
+
+.user-info {
+    font-size: 16px;
+}

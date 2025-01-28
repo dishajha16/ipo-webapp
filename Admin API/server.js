@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
@@ -10,6 +11,27 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+// MongoDB Connection
+mongoose.connect('mongodb+srv://vinayst:5OLN0a7MMM0MH3zN@bluestock.8icni.mongodb.net/?retryWrites=true&w=majority&appName=Bluestock');
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// Mongoose Schema
+const apiSchema = new mongoose.Schema({
+  name: String,
+  endpoint: String,
+  method: String,
+  responseStatus: { type: Number, default: 200 },
+  responseType: String,
+  responseFile: String,
+  templateFile: String,
+  templateContent: String,
+  active: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+const Api = mongoose.model('Api', apiSchema);
+
 const RESPONSES_DIR = path.join(__dirname, 'responses');
 const TEMPLATES_DIR = path.join(__dirname, 'templates');
 
@@ -18,22 +40,24 @@ const TEMPLATES_DIR = path.join(__dirname, 'templates');
   if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 });
 
-let apis = [];
-let idCounter = 1;
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 
 // Management API
-app.get('/management/apis', (req, res) => res.json(apis));
+app.get('/management/apis', async (req, res) => {
+  const apis = await Api.find();
+  res.json(apis);
+});
 
-app.post('/management/apis', (req, res) => {
+app.post('/management/apis', async (req, res) => {
   try {
     const apiConfig = req.body;
-    
-    // Validate file existence
+
     if (apiConfig.responseType === 'template') {
       const templatePath = path.join(TEMPLATES_DIR, apiConfig.templateFile);
-      if (!fs.existsSync(templatePath)) {
-        fs.writeFileSync(templatePath, apiConfig.templateContent);
-      }
+      fs.writeFileSync(templatePath, apiConfig.templateContent);
     } else {
       const filePath = path.join(RESPONSES_DIR, apiConfig.responseFile);
       if (!fs.existsSync(filePath)) {
@@ -41,60 +65,62 @@ app.post('/management/apis', (req, res) => {
       }
     }
 
-    const newApi = {
-      id: idCounter++,
+    const newApi = new Api({
       ...apiConfig,
       responseStatus: parseInt(apiConfig.responseStatus) || 200,
-      active: apiConfig.active !== undefined ? apiConfig.active : true,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
+    });
 
-    apis.push(newApi);
+    await newApi.save();
     res.status(201).json(newApi);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
-app.put('/management/apis/:id', (req, res) => {
+app.put('/management/apis/:id', async (req, res) => {
   try {
-    const index = apis.findIndex(a => a.id === parseInt(req.params.id));
-    if (index === -1) return res.status(404).json({ error: 'API not found' });
-
     const apiConfig = req.body;
-    const existingApi = apis[index];
+    const api = await Api.findById(req.params.id);
+    if (!api) return res.status(404).json({ error: 'API not found' });
 
-    // Update template file if changed
     if (apiConfig.responseType === 'template') {
       const templatePath = path.join(TEMPLATES_DIR, apiConfig.templateFile);
-      if (apiConfig.templateFile !== existingApi.templateFile || 
-          apiConfig.templateContent !== existingApi.templateContent) {
-        fs.writeFileSync(templatePath, apiConfig.templateContent);
-      }
+      fs.writeFileSync(templatePath, apiConfig.templateContent);
     }
 
-    apis[index] = { ...existingApi, ...apiConfig, updatedAt: new Date() };
-    res.json(apis[index]);
+    Object.assign(api, apiConfig, { updatedAt: new Date() });
+    await api.save();
+
+    res.json(api);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
-app.delete('/management/apis/:id', (req, res) => {
-  const index = apis.findIndex(a => a.id === parseInt(req.params.id));
-  if (index === -1) return res.status(404).json({ error: 'API not found' });
-  apis.splice(index, 1);
-  res.sendStatus(204);
+app.delete('/management/apis/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid API ID' });
+    }
+    const deletedApi = await Api.findByIdAndDelete(id);
+    if (!deletedApi) {
+      return res.status(404).json({ error: 'API not found' });
+    }
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
+
 // API Request Handling
-app.use((req, res, next) => {
-  const api = apis.find(a => 
-    a.endpoint === req.path && 
-    a.method === req.method &&
-    a.active
-  );
+app.use(async (req, res, next) => {
+  const api = await Api.findOne({
+    endpoint: req.path,
+    method: req.method,
+    active: true,
+  });
 
   if (!api) return next();
 
@@ -104,7 +130,7 @@ app.use((req, res, next) => {
       const content = ejs.render(fs.readFileSync(templatePath, 'utf8'), {
         query: req.query,
         body: req.body,
-        params: req.params
+        params: req.params,
       });
       res.type('html').status(api.responseStatus).send(content);
     } else {
