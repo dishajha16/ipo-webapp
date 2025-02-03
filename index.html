@@ -3,98 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPO Admin Dashboard</title>
+    <title>Contact Us - Bluestock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <h2>Bluestock Fintech</h2>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#dashboard" class="active" data-target="dashboard-section">Dashboard</a></li>
-            <li>
-                <a href="#manage-ipo" class="toggle-submenu">Manage IPO</a>
-                <ul class="submenu">
-                    <li><a href="#show-upcoming-ipo" data-target="show-upcoming-ipo-section">Show Upcoming IPO Details</a></li>
-                    <li><a href="#add-upcoming-ipo" data-target="add-upcoming-ipo-section">Add Upcoming IPO Details</a></li>
-                </ul>
-            </li>
-            <li><a href="#ipo-subscription" data-target="ipo-subscription-section">IPO Subscription</a></li>
-            <li><a href="#ipo-allotment" data-target="ipo-allotment-section">IPO Allotment</a></li>
-            <li><a href="#settings" data-target="settings-section">Settings</a></li>
-            <li><a href="#api-manager" data-target="api-manager-section">API Manager</a></li>
-            <li><a href="#accounts" data-target="accounts-section">Accounts</a></li>
-            <li><a href="#help" data-target="help-section">Help</a></li>
-        </ul>
-    </div>
+    <header class="bg-dark text-white text-center p-3">
+        <h1>Bluestock</h1>
+    </header>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <header>
-            <div class="top-bar">
-                <h1>IPO Admin Dashboard</h1>
-                <div class="user-info">
-                    <span>Hi, Buddy</span>
+    <main class="container mt-4">
+        <h2 class="text-center">How Can We Help You?</h2>
+
+        <div class="row text-center mt-4">
+            <div class="col-md-6">
+                <div class="p-4 border rounded">
+                    <h3>Email us</h3>
+                    <p>One of our agents will respond at the earliest</p>
+                    <a href="mailto:hello@bluestock.in" class="btn btn-primary">hello@bluestock.in →</a>
                 </div>
             </div>
-        </header>
 
-        <!-- Sections -->
-        <section id="dashboard-section" class="content-section active">
-            <h2>Dashboard</h2>
-            <p>Welcome to the Dashboard! Here you can view key metrics and insights.</p>
-        </section>
+            <div class="col-md-6">
+                <div class="p-4 border rounded">
+                    <h3>Chat with us</h3>
+                    <p>Available from 8:00 AM to 5:00 PM</p>
+                    <a href="#" class="btn btn-primary">Open Chat →</a>
+                </div>
+            </div>
+        </div>
 
-        <section id="show-upcoming-ipo-section" class="content-section">
-            <h2>Show Upcoming IPO Details</h2>
-            <p>Details about upcoming IPOs.</p>
-        </section>
-
-        <section id="add-upcoming-ipo-section" class="content-section">
-            <h2>Add Upcoming IPO Details</h2>
-            <p>Form to add details about upcoming IPOs.</p>
-        </section>
-
-        <section id="ipo-subscription-section" class="content-section">
-            <h2>IPO Subscription</h2>
-            <p>Track and handle IPO subscriptions in this section.</p>
-        </section>
-
-        <section id="ipo-allotment-section" class="content-section">
-            <h2>IPO Allotment</h2>
-            <p>View and manage IPO allotments here.</p>
-        </section>
-
-        <section id="settings-section" class="content-section">
-            <h2>Settings</h2>
-            <p>Customize your application settings in this section.</p>
-        </section>
-
-        <section id="api-manager-section" class="content-section">
-            <h2>API Manager</h2>
-            <p>Manage API keys and configurations here.</p>
-        </section>
-
-        <section id="accounts-section" class="content-section">
-            <h2>Accounts</h2>
-            <p>View and manage accounts here.</p>
-        </section>
-
-        <section id="help-section" class="content-section">
-            <h2>Help</h2>
-            <p>Find FAQs and support documentation here.</p>
-        </section>
-    </div>
+        <div class="text-center bg-primary text-white p-4 mt-4 rounded">
+            <h2>Interact With Us in Our Active Community</h2>
+            <p>Ask questions or discuss anything related to investing or trading in the most active trading & investing community.</p>
+            <button onclick="redirectToCommunity()" class="btn btn-dark">JOIN NOW</button>
+        </div>
+    </main>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
