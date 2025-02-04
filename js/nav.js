@@ -1,27 +1,31 @@
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const sidebar = document.querySelector('.sidebar');
+document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('.content-section');
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
 
-hamburgerMenu.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-});
+    // Handle navigation link clicks
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            navLinks.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
 
-// Navigation Functionality
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        // Remove "active" from all links
-        document.querySelectorAll('.nav-links a').forEach(item => item.classList.remove('active'));
-
-        // Add "active" to the clicked link
-        this.classList.add('active');
-
-        // Show the relevant section
-        document.querySelectorAll('.content-section').forEach(section => {
-            section.classList.remove('active');
+            const target = this.getAttribute('data-target');
+            sections.forEach(section => {
+                if (section.id === target) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
         });
+    });
 
-        const target = document.getElementById(this.getAttribute('data-target'));
-        if (target) target.classList.add('active');
+    // Handle hamburger button click to toggle the sidebar
+    hamburgerButton.addEventListener('click', function () {
+        sidebar.classList.toggle('active');  // Toggles the sidebar visibility
+        mainContent.classList.toggle('shift');  // Shifts the main content accordingly
     });
 });

@@ -1,60 +1,86 @@
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-}
-
+/* Sidebar styling */
 .sidebar {
-    width: 260px;
-    background-color: #1A1A2E;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
+    width: 250px;
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     height: 100%;
-    transition: left 0.3s ease;
+    background-color: #343a40;
+    color: white;
+    padding-top: 60px;
+    transform: translateX(-250px);
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar.active {
-    left: -260px;
+    transform: translateX(0);
 }
 
-.logo {
+.sidebar .logo h2 {
     text-align: center;
-    padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #FF6B6B;
+    color: #ffffff;
 }
 
-.nav-links {
-    list-style: none;
+.sidebar .nav-links {
+    list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
-.nav-links a {
+.sidebar .nav-links li {
+    margin: 10px 0;
+}
+
+.sidebar .nav-links li a {
+    display: block;
+    padding: 10px 20px;
     text-decoration: none;
     color: white;
+    font-size: 16px;
+}
+
+.sidebar .nav-links li a.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100; /* Make sure it stays on top */
+    position: relative; /* Make sure it stays in the top bar */
+}
+
+.hamburger span {
     display: block;
-    padding: 12px 20px;
-    transition: all 0.3s ease;
+    height: 4px;
+    width: 100%;
+    background-color: #000;
 }
 
-.nav-links a.active {
-    background-color: #2F3542;
-    border-left: 4px solid #FF6B6B;
+/* Show hamburger menu on screens up to 1200px wide */
+@media (max-width: 2500px) {
+    .hamburger {
+        display: flex;
+    }
 }
 
+/* Main content area */
 .main-content {
-    flex-grow: 1;
-    background-color: #F4F4F8;
+    
     padding: 20px;
-    margin-left: 260px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.shift {
+    margin-left: 0;
 }
 
 .content-section {
@@ -63,61 +89,27 @@ body {
 
 .content-section.active {
     display: block;
+    margin-top: 50px;
 }
 
-/* Hamburger Menu */
-.hamburger-menu {
-    display: block;
-    position: fixed;
-    top: 0px; /* Adjust vertical placement */
-    left: 0px; /* Push to the right of the sidebar */
-    z-index: 1000;
-    cursor: pointer;
-    background-color: #1A1A2E; /* Matches the sidebar background */
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.hamburger-menu span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: white; /* Matches the sidebar text color */
-    margin: 5px 0;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Sidebar Initial State */
-.sidebar {
-    width: 260px;
-    background-color: #1A1A2E;
-    color: white;
+/* Style for the top bar */
+.top-bar {
     display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    position: fixed;
-    left: 0;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    position: fixed; /* Fixes the top bar at the top */
+    width: 1400px; /* Ensures it spans the entire width */
     top: 0;
-    height: 100%;
-    transition: left 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Keep it above the sidebar */
 }
 
-.sidebar.active {
-    left: -260px;
+.top-bar h1 {
+    margin: 0;
 }
 
-/* Main Content */
-.main-content {
-    flex-grow: 1;
-    background-color: #F4F4F8;
-    padding: 20px;
-    margin-left: 260px;
-    transition: margin-left 0.3s ease;
-}
-
-.sidebar.active ~ .main-content {
-    margin-left: 0;
+.user-info {
+    font-size: 16px;
 }
