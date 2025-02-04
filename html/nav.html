@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPO Admin Dashboard</title>
+
     <link rel="stylesheet" href="/css/nav.css">
+    <title>IPO Admin Dashboard</title>
 </head>
 <body>
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
@@ -21,15 +15,10 @@
         </div>
         <ul class="nav-links">
             <li><a href="#dashboard" class="active" data-target="dashboard-section">Dashboard</a></li>
-            <li>
-                <a href="#manage-ipo" class="toggle-submenu">Manage IPO</a>
-                <ul class="submenu">
-                    <li><a href="#show-upcoming-ipo" data-target="show-upcoming-ipo-section">Show Upcoming IPO Details</a></li>
-                    <li><a href="#add-upcoming-ipo" data-target="add-upcoming-ipo-section">Add Upcoming IPO Details</a></li>
-                </ul>
-            </li>
+            <li><a href="/html/manage_ipo.html" data-target="manage-ipo-section">Manage IPO</a></li>
             <li><a href="#ipo-subscription" data-target="ipo-subscription-section">IPO Subscription</a></li>
             <li><a href="#ipo-allotment" data-target="ipo-allotment-section">IPO Allotment</a></li>
+            <li class="separator"></li>
             <li><a href="#settings" data-target="settings-section">Settings</a></li>
             <li><a href="#api-manager" data-target="api-manager-section">API Manager</a></li>
             <li><a href="#accounts" data-target="accounts-section">Accounts</a></li>
@@ -37,31 +26,34 @@
         </ul>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main content -->
     <div class="main-content">
         <header>
             <div class="top-bar">
+                <!-- Hamburger Button -->
+                <button class="hamburger" id="hamburger-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                
                 <h1>IPO Admin Dashboard</h1>
                 <div class="user-info">
-                    <span>Hi, Buddy</span>
+                    <span>Hi, Vishal</span>
                 </div>
             </div>
         </header>
 
-        <!-- Sections -->
+        <!-- Sections (same as before) -->
         <section id="dashboard-section" class="content-section active">
             <h2>Dashboard</h2>
             <p>Welcome to the Dashboard! Here you can view key metrics and insights.</p>
         </section>
 
-        <section id="show-upcoming-ipo-section" class="content-section">
-            <h2>Show Upcoming IPO Details</h2>
-            <p>Details about upcoming IPOs.</p>
-        </section>
-
-        <section id="add-upcoming-ipo-section" class="content-section">
-            <h2>Add Upcoming IPO Details</h2>
-            <p>Form to add details about upcoming IPOs.</p>
+        <section id="manage-ipo-section" class="content-section">
+            <h2>Manage IPO</h2>
+            <p>Manage all the Initial Public Offerings (IPOs) from this section.</p>
         </section>
 
         <section id="ipo-subscription-section" class="content-section">
@@ -86,12 +78,12 @@
 
         <section id="accounts-section" class="content-section">
             <h2>Accounts</h2>
-            <p>View and manage accounts here.</p>
+            <p>View and manage your accounts in this section.</p>
         </section>
 
         <section id="help-section" class="content-section">
             <h2>Help</h2>
-            <p>Find FAQs and support documentation here.</p>
+            <p>Find FAQs and support documentation in this section.</p>
         </section>
     </div>
 
