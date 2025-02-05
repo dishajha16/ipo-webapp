@@ -1,4 +1,141 @@
-<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upcoming IPO Information</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <header class="d-flex justify-content-between align-items-center py-3">
+          <h1 class="h4">Upcoming IPO Information</h1>
+          <div>
+            <button class="btn btn-primary">Register</button>
+            <button class="btn btn-danger">Cancel</button>
+          </div>
+        </header>
+        <section class="card p-4">
+          <h5 class="card-title">IPO Information</h5>
+          <form>
+            <div class="mb-3 text-center">
+              <label class="form-label">Company Logo</label>
+              <div>
+                <img src="placeholder-logo.png" alt="Company Logo" class="company-logo">
+                <button type="button" class="btn btn-sm btn-secondary">Upload Logo</button>
+                <button type="button" class="btn btn-sm btn-danger">Delete</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Company Name</label>
+                <input type="text" class="form-control" placeholder="Enter company name">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Price Band</label>
+                <input type="text" class="form-control" placeholder="Enter price band">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Open</label>
+                <input type="date" class="form-control">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Close</label>
+                <input type="date" class="form-control">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Issue Size</label>
+                <input type="text" class="form-control" placeholder="Enter issue size">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Issue Type</label>
+                <select class="form-select">
+                  <option value="public">Public</option>
+                  <option value="private">Private</option>
+                  <option value="rights">Rights</option>
+                </select>
+              </div>
+            </div>
+            <h5 class="mt-4">New Listed IPO Details</h5>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">IPO Price</label>
+                <input type="text" class="form-control" placeholder="Enter IPO price">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Listing Price</label>
+                <input type="text" class="form-control" placeholder="Enter listing price">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Listing Gain</label>
+                <input type="text" class="form-control" placeholder="Enter listing gain">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Listing Date</label>
+                <input type="date" class="form-control">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">CMP</label>
+                <input type="text" class="form-control" placeholder="Enter CMP">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Current Return</label>
+                <input type="text" class="form-control" placeholder="Enter current return">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">RHP</label>
+                <input type="url" class="form-control" placeholder="Enter RHP link">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">DRHP</label>
+                <input type="url" class="form-control" placeholder="Enter DRHP link">
+              </div>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,34 +143,34 @@
   <title>Upcoming IPO Information</title>
   <link rel="stylesheet" href="/css/IPOmodel(edit).css">
 </head>
-<body>
+<body> -->
 
     <!-- Main Content -->
-    <main class="main-content">
+    <!-- <main class="main-content">
       <header>
         <h1>Upcoming IPO Information</h1>
         <div class="action-buttons">
           <button class="register">Register</button>
           <button class="cancel" id="cancel">Cancel</button>
         </div>
-      </header>
+      </header> -->
 
-      <section class="form-container">
+      <!-- <section class="form-container"> -->
         <!-- IPO Information -->
-        <div class="form-header">IPO Information</div>
-        <form id="ipo-form">
+        <!-- <div class="form-header">IPO Information</div>
+        <form id="ipo-form"> -->
           <!-- Logo Upload -->
-          <div class="form-group logo-section">
-            <label>Company Logo</label>
+          <!-- <div class="form-group logo-section"> -->
+            <!-- <label>Company Logo</label>
             <div class="logo-actions">
               <img src="placeholder-logo.png" alt="Company Logo" class="company-logo">
               <button type="button" class="upload-btn">Upload Logo</button>
               <button type="button" class="delete-btn">Delete</button>
             </div>
-          </div>
+          </div> -->
 
           <!-- IPO Details Grid -->
-          <div class="form-grid">
+          <!-- <div class="form-grid">
             <div class="form-group">
               <label>Company Name</label>
               <input type="text" placeholder="Enter company name" id="company-name" required>
@@ -59,8 +196,8 @@
               <select id="issue-type" required>
                 <option value="public">Public</option>
                 <option value="private">Private</option>
-                <option value="rights">Rights</option>
-              </select>
+                <option value="rights">Rights</option> -->
+              <!-- </select>
             </div>
             <div class="form-group">
               <label>Listing Date</label>
@@ -76,7 +213,7 @@
             </div>
           </div>
 
-          <!-- Listed IPO Details -->
+          Listed IPO Details
           <div class="form-header">New Listed IPO Details (When IPO Gets Listed)</div>
           <div class="form-grid">
             <div class="form-group">
@@ -88,8 +225,8 @@
               <input type="text" placeholder="Enter listing price (e.g., ₹435)" id="listing-price" required>
             </div>
             <div class="form-group">
-              <label>Listing Gain</label>
-              <input type="text" placeholder="Enter listing gain (e.g., 13.58%)" id="listing-gain" required>
+              <label>Listing Gain</label> -->
+              <!-- <input type="text" placeholder="Enter listing gain (e.g., 13.58%)" id="listing-gain" required>
             </div>
             <div class="form-group">
               <label>Listing Date</label>
@@ -113,10 +250,10 @@
             </div>
           </div>
         </form>
-      </section>
+      </section> -->
 
       <!-- Success Message -->
-      <div id="success-message" style="display: none; text-align: center; font-size: 18px; color: green; margin-top: 20px;">
+      <!-- <div id="success-message" style="display: none; text-align: center; font-size: 18px; color: green; margin-top: 20px;">
         Your form has been successfully registered!
       </div>
 
@@ -125,4 +262,4 @@
 
   <script src="/js/IPOmodel(edit).js"></script>
 </body>
-</html>
+</html> -->
