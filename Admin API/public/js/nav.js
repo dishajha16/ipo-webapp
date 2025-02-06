@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('.content-section');
-    const hamburgerButton = document.getElementById('hamburger-button');
+    // Changed from getElementById('hamburger-button') to querySelector('.hamburger-menu')
+    const hamburgerButton = document.querySelector('.hamburger-menu');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
 
@@ -26,6 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle hamburger button click to toggle the sidebar
     hamburgerButton.addEventListener('click', function () {
         sidebar.classList.toggle('active');  // Toggles the sidebar visibility
-        mainContent.classList.toggle('shift');  // Shifts the main content accordingly
+        mainContent.classList.toggle('shift'); // Shifts the main content accordingly
     });
 });

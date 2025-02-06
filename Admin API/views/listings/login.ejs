@@ -11,58 +11,57 @@
 </head>
 
 <body>
- <!-- Header -->
- <div class="header">
-    <h3>You're one step away!</h3>
-    <div class="header-content">
-        <div class="text-container">
-            <h4>Login</h4>
-            <p>To know better</p>
-        </div>
-        <div class="image-container">
-            <img src="/other images/2e6IqEHxYtd8j3v0sJzQlIpt6vy_Group_764.png" alt="Sample Image">
+    <!-- Header -->
+    <div class="header">
+        <h3>You're one step away!</h3>
+        <div class="header-content">
+            <div class="text-container">
+                <h4>Login</h4>
+                <p>To know better</p>
+            </div>
+            <div class="image-container">
+                <img src="/other images/2e6IqEHxYtd8j3v0sJzQlIpt6vy_Group_764.png" alt="Sample Image">
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Login Form -->
-<div class="login-container">
-    <img src="/other images/logo.png" alt="Logo">
+    <!-- Login Form -->
+    <div class="login-container">
+        <img src="/other images/logo.png" alt="Logo">
+        <form>
+            <div class="form-group">
+                <img src="https://img.icons8.com/ios-filled/20/000000/user.png" alt="User Icon">
+                <input type="text" class="form-control" placeholder="Username / Email">
+            </div>
+            <div class="form-group">
+                <img src="https://img.icons8.com/ios-filled/20/000000/lock.png" alt="Lock Icon">
+                <input type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="forgot-password">
+                <a href="#" style="color: #be86fe;">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+        <div class="login-footer">
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
 
-    <form action="/admin/login" method="POST">
-        <div class="form-group">
-            <img src="https://img.icons8.com/ios-filled/20/000000/user.png" alt="User Icon" >
-            <input type="text" class="form-control" name="username" placeholder="Username / Email" required>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="divider">
+            <span>OR</span>
         </div>
-        <div class="form-group">
-            <img src="https://img.icons8.com/ios-filled/20/000000/lock.png" alt="Lock Icon">
-            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        <div class="google-login">
+            <img src="https://img.icons8.com/color/20/000000/google-logo.png" alt="Google Logo">
+            <span>Continue with Google</span>
         </div>
-        <div class="forgot-password">
-            <a href="#" style="color: #be86fe;">Forgot password?</a>
+        <div class="terms">
+            <input type="checkbox" id="terms">
+            <label for="terms">I Agree to the <a href="#">Terms and Conditions</a></label>
         </div>
-        <button type="submit" class="btn-primary">Login</button>
-    </form>
-    <div class="login-footer">
-        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        <p>Need help? <a href="#">Contact Support</a></p>
     </div>
-</div>
-
-<!-- Footer -->
-<div class="footer">
-    <div class="divider">
-        <span>OR</span>
-    </div>
-    <div class="google-login">
-        <img src="https://img.icons8.com/color/20/000000/google-logo.png" alt="Google Logo">
-        <span>Continue with Google</span>
-    </div>
-    <div class="terms">
-        <input type="checkbox" id="terms">
-        <label for="terms">I Agree to the <a href="#">Terms and Conditions</a></label>
-    </div>
-    <p>Need help? <a href="#">Contact Support</a></p>
-</div>
 </body>
 
 </html>

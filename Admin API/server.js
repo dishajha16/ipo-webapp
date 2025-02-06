@@ -69,8 +69,29 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
+const ipoSchema = new mongoose.Schema({
+  companyName: String,
+  logo: { type: String, default: '/placeholder-logo.png' },
+  priceBand: String,
+  open: Date,
+  close: Date,
+  issueSize: String,
+  issueType: String,
+  listingDate: Date,
+  status: String,
+  ipoPrice: String,
+  listingPrice: String,
+  listingGain: String,
+  listedDate: Date,
+  cmp: String,
+  currentReturn: String,
+  rhp: String,
+  drhp: String
+});
+
 const User = mongoose.model('User', userSchema);
 const Api = mongoose.model('Api', apiSchema);
+const IPO = mongoose.model('IPO', ipoSchema);
 
 // Passport configuration
 passport.use(new LocalStrategy(async (username, password, done) => {
@@ -106,9 +127,8 @@ async function createInitialAdmin() {
 }
 createInitialAdmin();
 
-// Public API Handling Middleware (should come before auth routes)
+// Public API Handling Middleware
 app.use(async (req, res, next) => {
-  // Skip admin routes
   if (req.path.startsWith('/admin') || req.path.startsWith('/management')) return next();
   try {
     const api = await Api.findOne({
@@ -144,22 +164,74 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.get('/listings', (req, res) => {
-  res.render('listings/ipo_listing.ejs', { error: req.flash('error') });
+// Date formatting helper
+function formatDate(dateString) {
+  if (!dateString || dateString === "Not Issued") return "Not Issued";
+  const date = new Date(dateString);
+  return isNaN(date.getTime()) ? "Not Issued" : date.toLocaleDateString('en-GB').replace(/\//g, '-');
+}
+
+// Routes
+app.get('/listings', async (req, res) => {
+  try {
+    const ipoList = await IPO.find({});
+    const formattedIPOs = ipoList.map(ipo => ({
+      ...ipo.toObject(),
+      open: formatDate(ipo.open),
+      close: formatDate(ipo.close),
+      listingDate: formatDate(ipo.listingDate),
+      listedDate: formatDate(ipo.listedDate),
+    }));
+    res.render('listings/ipo_listing.ejs', { ipoList: formattedIPOs, error: req.flash('error') });
+  } catch (error) {
+    console.error('Error fetching IPOs:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
-app.get('/community', (req, res) => {
-  res.render('listings/community.ejs', { error: req.flash('error') });
+// Fixed IPO submission route
+app.post('/admin/ipo/new', async (req, res) => {
+  try {
+    console.log('Received IPO data:', req.body);
+
+    const parseDate = (dateStr) => dateStr ? new Date(dateStr) : undefined;
+
+    const newIPO = new IPO({
+      companyName: req.body.companyName,
+      logo: req.body.logo || '/placeholder-logo.png',
+      priceBand: req.body.priceBand,
+      open: parseDate(req.body.open),
+      close: parseDate(req.body.close),
+      issueSize: req.body.issueSize,
+      issueType: req.body.issueType,
+      listingDate: parseDate(req.body.listingDate),
+      status: req.body.status,
+      ipoPrice: req.body.ipoPrice,
+      listingPrice: req.body.listingPrice,
+      listingGain: req.body.listingGain,
+      listedDate: parseDate(req.body.listedDate),
+      cmp: req.body.cmp,
+      currentReturn: req.body.currentReturn,
+      rhp: req.body.rhp,
+      drhp: req.body.drhp
+    });
+
+    await newIPO.save();
+    console.log('IPO saved successfully:', newIPO);
+    res.redirect('/listings');
+  } catch (error) {
+    console.error('IPO Save Error:', error.message);
+    console.error('Validation Errors:', error.errors);
+    res.status(500).send(`Error: ${error.message}`);
+  }
 });
 
-app.get('/signup', (req, res) => {
-  res.render('listings/signup.ejs', { error: req.flash('error') });
-});
+
 
 // Authentication middleware
 const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
-  req.flash('error', 'Please login first');
+  req.flash('error', 'Please login first'); 
   res.redirect('/admin/login');
 };
 
@@ -171,7 +243,6 @@ app.get('/admin/upcomming-ipo', ensureAuthenticated, (req, res) => {
       { company: 'Company A', date: '2023-10-15', price: '$20' },
       { company: 'Company B', date: '2023-10-20', price: '$25' },
     ];
-
     // Render the EJS template with the data
     res.render('listings/upcoming-ipo.ejs', { user: req.user, upcomingIPOs });
   } catch (error) {
@@ -182,7 +253,7 @@ app.get('/admin/upcomming-ipo', ensureAuthenticated, (req, res) => {
 
 // Auth routes
 app.get('/admin/login', (req, res) => {
-  res.render('listings/login.ejs', { error: req.flash('error') });
+  res.render('listings/admin_login.ejs', { error: req.flash('error') });
 });
 
 app.post('/admin/login', passport.authenticate('local', {
@@ -228,7 +299,7 @@ app.post('/management/apis', ensureAuthenticated, async (req, res) => {
 app.put('/management/apis/:id', ensureAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('Attempting to update API with ID:', id); // Log the ID
+    console.log('Attempting to update API with ID:', id);
     const updatedApi = await Api.findByIdAndUpdate(id, { ...req.body, updatedAt: Date.now() }, { new: true });
     if (!updatedApi) {
       return res.status(404).json({ error: 'API not found' });
