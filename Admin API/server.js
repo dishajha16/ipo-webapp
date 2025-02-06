@@ -272,6 +272,8 @@ app.get('/admin/dashboard', ensureAuthenticated, (req, res) => {
   res.render('listings/nav.ejs', { user: req.user });
 });
 
+
+
 // Protected management endpoints
 app.get('/management/apis', ensureAuthenticated, async (req, res) => {
   try {

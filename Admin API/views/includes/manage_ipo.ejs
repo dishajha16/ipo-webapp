@@ -1,18 +1,8 @@
 <link rel="stylesheet" href="/css/IPO_model_edit.css">
 
 <main class="main-content">
-    <header>
-      <h1>Upcoming IPO Information</h1>
-      <div class="action-buttons">
-        <button type="submit" form="ipo-form" class="register">Register</button>
-        <button type="button" class="cancel" id="cancel">Cancel</button>
-      </div>
-    </header>
-
     <section class="form-container">
       <form id="ipo-form" action="/admin/ipo/new" method="POST">
-        <div class="form-header">IPO Information</div>
-        
         <!-- Logo Section -->
         <div class="form-group logo-section">
           <label>Company Logo</label>
@@ -66,11 +56,6 @@
               <option value="cancelled">Cancelled</option>
             </select>
           </div>
-        </div>
-
-        <!-- Listed IPO Details -->
-        <div class="form-header">Listed IPO Details</div>
-        <div class="form-grid">
           <div class="form-group">
             <label>IPO Price</label>
             <input type="text" placeholder="Enter IPO price" name="ipoPrice" required>
@@ -103,6 +88,10 @@
             <label>DRHP</label>
             <input type="url" placeholder="DRHP PDF link" name="drhp" required>
           </div>
+        </div>
+        <div class="action-buttons">
+          <button type="submit" form="ipo-form" class="register">Register</button>
+          <button type="button" class="cancel" id="cancel">Cancel</button>
         </div>
       </form>
     </section>

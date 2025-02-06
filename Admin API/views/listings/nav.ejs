@@ -15,7 +15,7 @@
         <ul class="nav-links">
             <li><a href="#dashboard" class="active" data-target="dashboard-section">Dashboard</a></li>
             <li>
-                <a href="#manage-ipo" class="toggle-submenu">Manage IPO</a>
+                <h4 href="#manage-ipo" class="toggle-submenu" style="all: unset; margin-left: 20px;">Manage IPO</h4>
                 <ul class="submenu">
                     <li><a href="#show-upcoming-ipo" data-target="show-upcoming-ipo-section">Show Upcoming IPO Details</a></li>
                     <li><a href="#add-upcoming-ipo" data-target="add-upcoming-ipo-section">Add Upcoming IPO Details</a></li>
@@ -31,34 +31,34 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
 
 
         <!-- Sections -->
         <section id="dashboard-section" class="content-section active" >
         </section>
 
-        <section id="show-upcoming-ipo-section" class="content-section">
+        <section id="show-upcoming-ipo-section" class="content-section upcomming">
             <%- include("../includes/upcomming_ipo.ejs") %>
 
         </section>
 
-        <section id="add-upcoming-ipo-section" class="content-section">
+        <section id="add-upcoming-ipo-section" class="content-section add-fourm">
             <%- include("../includes/manage_ipo.ejs") %>
         </section>
 
-        <section id="ipo-subscription-section" class="content-section">
+        <section id="ipo-subscription-section" class="content-section subscription">
             <%- include("../includes/ipo_subscription.ejs") %>
 
         </section>
 
-        <section id="ipo-allotment-section" class="content-section">
+        <section id="ipo-allotment-section" class="content-section allortment">
+            <%- include("../includes/allortment.ejs") %>
         </section>
 
         <section id="settings-section" class="content-section">
         </section>
 
-        <section id="api-manager-section" class="content-section">
+        <section id="api-manager-section" class="content-section manage-api">
             <%- include("../includes/api.ejs") %>
         </section>
 
@@ -67,7 +67,6 @@
 
         <section id="help-section" class="content-section">
         </section>
-    </div>
 
 <script src="/js/nav.js"></script>
 
