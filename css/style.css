@@ -1,112 +1,148 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
 }
 
-header {
-  background-color: #222;
-  color: white;
-  padding: 15px;
+/* Ensure smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
 
-.contact-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
+/* Responsive Container */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
-.contact-box {
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-  border-radius: 10px;
+/* Sidebar Adjustments */
+.sidebar {
+    width: 250px;
+    background: white;
+    color: black;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
-.community-section {
-  background-color: #4A90E2;
-  color: white;
-  padding: 40px;
-  margin-top: 20px;
+.sidebar ul {
+    list-style: none;
+    padding: 0;
 }
 
+.sidebar ul li {
+    padding: 15px;
+    font-size: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar ul li a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.sidebar ul li:hover {
+    background: #f0f0f0;
+}
+
+/* Main Content */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Cards and Ratings */
+.broker-comparison {
+    display: flex;
+    flex-wrap: wrap; /* Allows responsiveness */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.broker-card, .rating-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 250px;
+    flex: 1 1 auto; /* Ensures adaptability */
+}
+
+.broker-card img, .rating-card img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.broker-card button, .rating-card button {
+    background: #00bcd4;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #00bcd4;
+    color: white;
+}
+
+/* Buttons */
 button {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #333;
-}
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+    background: #059669;
 }
 
-header {
-  background-color: #222;
-  color: white;
-  padding: 15px;
-}
-
-.about-section {
-  padding: 30px;
-}
-
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.stat-box {
-  background-color: #4A90E2;
-  color: white;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.news {
-  padding: 30px;
-}
-
-.news-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.news-box {
-  border: 1px solid #ccc;
-  padding: 15px;
-  width: 250px;
-  border-radius: 8px;
-}
-
-.media-link {
-  display: block;
-  margin-top: 20px;
-  text-decoration: none;
-  color: #4A90E2;
-  font-weight: bold;
-}
-body {
-  font-family: Arial, sans-serif;
-}
-
-h1, h2 {
-  font-weight: bold;
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .broker-comparison {
+        flex-direction: column;
+    }
 }
