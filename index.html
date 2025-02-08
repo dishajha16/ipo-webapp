@@ -3,46 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Bluestock</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#clients">Active Clients</a></li>
+                <li><a href="#charges">Charges</a></li>
+                <li><a href="#complaints">Complaints</a></li>
+                <li><a href="#shareholding">Shareholding</a></li>
+                <li><a href="#pros-cons">Pros & Cons</a></li>
+                <li><a href="#ratings">Ratings</a></li>
+                <li><a href="#financials">Financials</a></li>
+            </ul>
+        </aside>
 
-    <header class="bg-dark text-white text-center p-3">
-        <h1>Bluestock</h1>
-    </header>
-
-    <main class="container mt-4">
-        <h2 class="text-center">How Can We Help You?</h2>
-
-        <div class="row text-center mt-4">
-            <div class="col-md-6">
-                <div class="p-4 border rounded">
-                    <h3>Email us</h3>
-                    <p>One of our agents will respond at the earliest</p>
-                    <a href="mailto:hello@bluestock.in" class="btn btn-primary">hello@bluestock.in →</a>
+        <!-- Main Content -->
+        <main class="content">
+            <section id="home" class="section active">
+                <h2>Broker A vs. Broker B</h2>
+                <div class="broker-comparison">
+                    <div class="broker-card">
+                        <img src="angelone-logo.png" alt="Angel One">
+                        <h3>Angel One</h3>
+                        <p class="rating">⭐ 4.7</p>
+                        <button>Open Demat Account</button>
+                    </div>
+                    <div class="vs">vs</div>
+                    <div class="broker-card">
+                        <img src="zerodha-logo.png" alt="Zerodha">
+                        <h3>Zerodha</h3>
+                        <p class="rating">⭐ 4.6</p>
+                        <button>Open Demat Account</button>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="col-md-6">
-                <div class="p-4 border rounded">
-                    <h3>Chat with us</h3>
-                    <p>Available from 8:00 AM to 5:00 PM</p>
-                    <a href="#" class="btn btn-primary">Open Chat →</a>
+            <section id="clients">
+                <h2>Active Clients</h2>
+                <canvas id="clientsChart"></canvas>
+            </section>
+
+            <section id="charges" class="section">
+                <h2>Brokerage Charges</h2>
+                <table>
+                    <tr><th>Type</th><th>Angel One</th><th>Zerodha</th></tr>
+                    <tr><td>Brokerage Charges</td><td>23.6</td><td>20</td></tr>
+                    <tr><td>Auto Square Off</td><td>20</td><td>15</td></tr>
+                    <tr><td>Call & Trade</td><td>15.34</td><td>15.93</td></tr>
+                </table>
+            </section>
+            <section id="complaints">
+                <h2>Complaints</h2>
+                <canvas id="complaintsChart"></canvas>
+            </section>
+
+            <section id="shareholding">
+                <h2>Shareholding</h2>
+                <canvas id="shareholdingChart"></canvas>
+            </section>
+
+            <section id="pros-cons" class="section">
+                <h2>Pros & Cons</h2>
+                <table>
+                    <tr><th>Pros</th><th>Cons</th></tr>
+                    <tr><td>Lower fees (Angel One)</td><td>Limited support (Angel One)</td></tr>
+                    <tr><td>More investment options (Zerodha)</td><td>Higher withdrawal fees (Zerodha)</td></tr>
+                </table>
+            </section>
+
+            <section id="ratings" class="section">
+                <h2>Ratings</h2>
+                <div class="ratings">
+                    <div class="rating-card">
+                        <h3>Angel One</h3>
+                        <p>⭐ 4.7</p>
+                        <p>Trust Factor: ★★★★★</p>
+                        <p>Ease of Use: ★★★★★</p>
+                        <p>Technology: ★★★★★</p>
+                        <button>Open Demat Account</button>
+                    </div>
+                    <div class="rating-card">
+                        <h3>Zerodha</h3>
+                        <p>⭐ 4.6</p>
+                        <p>Trust Factor: ★★★★★</p>
+                        <p>Ease of Use: ★★★★★</p>
+                        <p>Technology: ★★★★★</p>
+                        <button>Open Demat Account</button>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </section>
 
-        <div class="text-center bg-primary text-white p-4 mt-4 rounded">
-            <h2>Interact With Us in Our Active Community</h2>
-            <p>Ask questions or discuss anything related to investing or trading in the most active trading & investing community.</p>
-            <button onclick="redirectToCommunity()" class="btn btn-dark">JOIN NOW</button>
-        </div>
-    </main>
+            <section id="financials">
+                <h2>Financials</h2>
+                <canvas id="financialChart"></canvas>
+            </section>
+        </main>
+    </div>
 
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
