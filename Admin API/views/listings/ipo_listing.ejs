@@ -51,7 +51,7 @@
       
       <!-- Dynamic IPO Cards -->
       <% if (typeof ipoList !== 'undefined' && ipoList.length > 0) { %>
-        <% ipoList.forEach(function(ipo){ %>
+        <% ipoList.slice().reverse().forEach(function(ipo){ %>
           <div class="card shadow-sm p-4 ">
               <!-- Logo and Title -->
               <div class="all-title d-flex align-items-center mb-5 mt-5 ms-1">

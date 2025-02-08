@@ -129,3 +129,10 @@ body {
     height: 100vh;             /* Occupies full viewport height */
 
 }
+
+
+.dashboard{
+    margin-left: 300px;
+    margin-right: 40px;
+    height: 100vh;   
+}

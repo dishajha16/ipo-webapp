@@ -189,6 +189,11 @@ app.get('/listings', async (req, res) => {
   }
 });
 
+app.get('/community', (req, res) => {
+  res.render('listings/community.ejs', { error: req.flash('error') });
+});
+
+
 // Fixed IPO submission route
 app.post('/admin/ipo/new', async (req, res) => {
   try {

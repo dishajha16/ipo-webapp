@@ -1,4 +1,4 @@
-<% layout("/layouts/boilerplate") %>
+
 <link rel="stylesheet" href="/css/nav.css">
     <!-- Hamburger Menu -->
     <div class="hamburger-menu">
@@ -34,7 +34,8 @@
 
 
         <!-- Sections -->
-        <section id="dashboard-section" class="content-section active" >
+        <section id="dashboard-section" class="content-section active dashboard" >
+            <%- include("../includes/dashboard.ejs") %>
         </section>
 
         <section id="show-upcoming-ipo-section" class="content-section upcomming">
