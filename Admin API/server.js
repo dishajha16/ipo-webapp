@@ -236,14 +236,28 @@ const ensureAuthenticated = (req, res, next) => {
 };
 
 // Route to handle upcoming IPOs (assuming it renders an EJS template)
-app.get('/admin/upcomming-ipo', ensureAuthenticated, (req, res) => {
+// app.get('/admin/upcomming-ipo', ensureAuthenticated, (req, res) => {
+//   try {
+//     // You can fetch data from a database or use static data
+//     const upcomingIPOs = [
+//       { company: 'Company A', date: '2023-10-15', price: '$20' },
+//       { company: 'Company B', date: '2023-10-20', price: '$25' },
+//     ];
+//     // Render the EJS template with the data
+//     res.render('listings/upcoming-ipo.ejs', { user: req.user, upcomingIPOs });
+//   } catch (error) {
+//     console.error('Error fetching upcoming IPOs:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
+
+
+
+app.get('/admin/upcomming-ipo', ensureAuthenticated, async (req, res) => {
   try {
-    // You can fetch data from a database or use static data
-    const upcomingIPOs = [
-      { company: 'Company A', date: '2023-10-15', price: '$20' },
-      { company: 'Company B', date: '2023-10-20', price: '$25' },
-    ];
-    // Render the EJS template with the data
+    // Fetch IPOs where status is NOT 'Listed'
+    const upcomingIPOs = await IPO.find({ status: { $ne: 'Listed' } });
+
     res.render('listings/upcoming-ipo.ejs', { user: req.user, upcomingIPOs });
   } catch (error) {
     console.error('Error fetching upcoming IPOs:', error);
