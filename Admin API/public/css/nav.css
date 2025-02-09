@@ -109,7 +109,7 @@ body {
     background-color: #F4F4F8;
     padding: 20px;
     height: 100vh;             /* Occupies full viewport height */
-    overflow: hidden;          /* Prevent overall scrolling here */
+        /* Prevent overall scrolling here */
     transition: margin-left 0.3s ease;
 }
 

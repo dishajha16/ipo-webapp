@@ -1,9 +1,9 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
-  }
+  } */
   
   header {
     background-color: #222;
@@ -46,13 +46,13 @@ body {
   button:hover {
     background-color: #333;
   }
-  body {
+  /* body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
   }
-  
+   */
   header {
     background-color: #222;
     color: white;

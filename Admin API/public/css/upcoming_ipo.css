@@ -57,11 +57,21 @@
 .page-link {
     color: #6c5ce7;
     padding: 8px 16px;
+    /* Optional: add a border if needed */
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.page-link:hover {
+    background-color: #f0e5ff;
+    text-decoration: none;
 }
 
 .page-item.active .page-link {
-    background-color: #6c5ce7;
-    border-color: #6c5ce7;
+    background-color: #6c5ce7 !important;
+    border-color: #6c5ce7 !important;
+    color: #fff !important;
 }
 
 .table-hover tbody tr:hover {
