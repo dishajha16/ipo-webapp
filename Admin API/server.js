@@ -98,7 +98,8 @@ passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     const user = await User.findOne({ username });
     if (!user) return done(null, false, { message: 'Incorrect username.' });
-    if (!bcrypt.compareSync(password, user.password)) return done(null, false, { message: 'Incorrect password.' });
+    if (!bcrypt.compareSync(password, user.password))
+      return done(null, false, { message: 'Incorrect password.' });
     return done(null, user);
   } catch (err) {
     return done(err);
@@ -115,7 +116,7 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// Create initial admin user
+// Create initial admin user if not exists
 async function createInitialAdmin() {
   const existingAdmin = await User.findOne({ username: 'admin' });
   if (!existingAdmin) {
@@ -172,6 +173,8 @@ function formatDate(dateString) {
 }
 
 // Routes
+
+// Listings route
 app.get('/listings', async (req, res) => {
   try {
     const ipoList = await IPO.find({});
@@ -189,15 +192,29 @@ app.get('/listings', async (req, res) => {
   }
 });
 
+// Community route
 app.get('/community', (req, res) => {
   res.render('listings/community.ejs', { error: req.flash('error') });
+});
+
+
+app.get('/support', (req, res) => {
+  res.render('listings/support.ejs', { error: req.flash('error') });
+});
+
+app.get('/login', (req, res) => {
+  res.render('listings/login.ejs', { error: req.flash('error') });
+});
+
+app.get('/signup', (req, res) => {
+  res.render('listings/signup.ejs', { error: req.flash('error') });
 });
 
 // Fixed IPO submission route
 app.post('/admin/ipo/new', async (req, res) => {
   try {
     console.log('Received IPO data:', req.body);
-    const parseDate = (dateStr) => dateStr ? new Date(dateStr) : undefined;
+    const parseDate = dateStr => dateStr ? new Date(dateStr) : undefined;
     const newIPO = new IPO({
       companyName: req.body.companyName,
       logo: req.body.logo || '/placeholder-logo.png',
@@ -230,115 +247,133 @@ app.post('/admin/ipo/new', async (req, res) => {
 // Authentication middleware
 const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
-  req.flash('error', 'Please login first'); 
+  req.flash('error', 'Please login first');
   res.redirect('/admin/login');
 };
 
 // Route to handle upcoming IPOs with standard pagination
 app.get('/admin/upcoming-ipo', ensureAuthenticated, async (req, res) => {
   try {
-      const page = parseInt(req.query.page) || 1;
-      const limit = 10; // Standard 10 items per page
-      const skip = (page - 1) * limit;
-      const totalIpos = await IPO.countDocuments();
-      const totalPages = Math.ceil(totalIpos / limit);
-      const ipos = await IPO.find()
-          .sort({ listingDate: -1 })
-          .skip(skip)
-          .limit(limit);
-      
-      // Helper function for IPO status badge color
-      const getStatusColor = status => {
-          switch (status.toLowerCase()) {
-              case 'ongoing': return 'success';
-              case 'coming': return 'warning';
-              case 'new listed': return 'danger';
-              default: return 'secondary';
-          }
-      };
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+    const totalIpos = await IPO.countDocuments();
+    const totalPages = Math.ceil(totalIpos / limit);
+    const ipos = await IPO.find()
+      .sort({ listingDate: -1 })
+      .skip(skip)
+      .limit(limit);
 
-      res.render('listings/upcoming-ipo', {
-          ipos,
-          currentPage: page,
-          totalPages,
-          totalIpos,
-          user: req.user,
-          formatDate,
-          getStatusColor
-      });
+    // Helper for IPO status badge color
+    const getStatusColor = status => {
+      switch (status.toLowerCase()) {
+        case 'ongoing': return 'success';
+        case 'coming': return 'warning';
+        case 'new listed': return 'danger';
+        default: return 'secondary';
+      }
+    };
+
+    res.render('listings/upcoming-ipo', {
+      ipos,
+      currentPage: page,
+      totalPages,
+      totalIpos,
+      user: req.user,
+      formatDate,
+      getStatusColor
+    });
   } catch (error) {
-      console.error('Error fetching IPOs:', error);
-      res.status(500).send('Internal Server Error');
+    console.error('Error fetching IPOs:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
 
 // API endpoint for paginated IPO data (used for AJAX pagination)
 app.get('/api/ipos', async (req, res) => {
   try {
-      const page = parseInt(req.query.page) || 1;
-      const limit = 10;
-      const skip = (page - 1) * limit;
-      const ipos = await IPO.find()
-          .sort({ listingDate: -1 })
-          .skip(skip)
-          .limit(limit);
-      const total = await IPO.countDocuments();
-      res.json({
-          ipos,
-          currentPage: page,
-          totalPages: Math.ceil(total / limit),
-          total
-      });
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+    const ipos = await IPO.find()
+      .sort({ listingDate: -1 })
+      .skip(skip)
+      .limit(limit);
+    const total = await IPO.countDocuments();
+    res.json({
+      ipos,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+      total
+    });
   } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// API endpoint for paginated IPO Subscription data
+app.get('/api/ipoSubscriptions', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+    const subscriptions = await IPO.find()
+      .sort({ listingDate: -1 })
+      .skip(skip)
+      .limit(limit);
+    const total = await IPO.countDocuments();
+    res.json({
+      subscriptions,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+      total
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // Get single IPO
 app.get('/api/ipos/:id', async (req, res) => {
   try {
-      const ipo = await IPO.findById(req.params.id);
-      if (!ipo) {
-          return res.status(404).json({ error: 'IPO not found' });
-      }
-      res.json(ipo);
+    const ipo = await IPO.findById(req.params.id);
+    if (!ipo) {
+      return res.status(404).json({ error: 'IPO not found' });
+    }
+    res.json(ipo);
   } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // Update IPO
 app.put('/api/ipos/:id', ensureAuthenticated, async (req, res) => {
   try {
-      const ipo = await IPO.findByIdAndUpdate(
-          req.params.id,
-          req.body,
-          { new: true }
-      );
-      if (!ipo) {
-          return res.status(404).json({ error: 'IPO not found' });
-      }
-      res.json(ipo);
+    const ipo = await IPO.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!ipo) {
+      return res.status(404).json({ error: 'IPO not found' });
+    }
+    res.json(ipo);
   } catch (error) {
-      console.error('Error updating IPO:', error);
-      res.status(500).json({ error: 'Internal server error' });
+    console.error('Error updating IPO:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // Delete IPO
 app.delete('/api/ipos/:id', ensureAuthenticated, async (req, res) => {
   try {
-      const ipo = await IPO.findByIdAndDelete(req.params.id);
-      if (!ipo) {
-          return res.status(404).json({ error: 'IPO not found' });
-      }
-      res.json({ message: 'IPO deleted successfully' });
+    const ipo = await IPO.findByIdAndDelete(req.params.id);
+    if (!ipo) {
+      return res.status(404).json({ error: 'IPO not found' });
+    }
+    res.json({ message: 'IPO deleted successfully' });
   } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Auth routes
+// Authentication routes
 app.get('/admin/login', (req, res) => {
   res.render('listings/admin_login.ejs', { error: req.flash('error') });
 });
@@ -354,50 +389,87 @@ app.get('/admin/logout', (req, res) => {
   res.redirect('/admin/login');
 });
 
-// Protected admin routes
+// Protected admin dashboard route
 app.get('/admin/dashboard', ensureAuthenticated, async (req, res) => {
   try {
-      const page = parseInt(req.query.page) || 1;
-      const limit = 10;
-      const skip = (page - 1) * limit;
-      const ipos = await IPO.find()
-          .sort({ listingDate: -1 })
-          .skip(skip)
-          .limit(limit);
-      const totalIpos = await IPO.countDocuments();
-      const totalPages = Math.ceil(totalIpos / limit);
+    // Compute dashboardData from your database
+    const totalIPO = await IPO.countDocuments();
+    const ipoOngoing = await IPO.countDocuments({ status: { $regex: /ongoing/i } });
+    const ipoNewListed = await IPO.countDocuments({ status: { $regex: /new listed/i } });
+    const ipoComing = await IPO.countDocuments({ status: { $regex: /coming/i } });
+    
+    // For example, use ongoing as "gain" and the remainder as "loss"
+    const ipoGain = ipoOngoing;
+    const ipoLoss = totalIPO - ipoGain;
+    
+    // Get the earliest listingDate as boardStartDate (if available)
+    let boardStartDate = "N/A";
+    const earliestIPO = await IPO.findOne().sort({ listingDate: 1 }).exec();
+    if (earliestIPO && earliestIPO.listingDate) {
+      boardStartDate = earliestIPO.listingDate.toLocaleDateString('en-GB');
+    }
+    
+  
+    // Build dashboardData
+    const dashboardData = {
+      description: "Adipiscing elit, sed do eiusmod tempor", // Replace or compute dynamically
+      totalIPO,
+      ipoGain,
+      ipoLoss,
+      boardStartDate,
+      quickLinks: [
+        { shortName: "NSE", name: "NSE India", bgColor: "#fee2e2", url: "https://www.nseindia.com" },
+        { shortName: "BSE", name: "BSE India", bgColor: "#e0e7ff", url: "https://www.bseindia.com" },
+        { shortName: "SEBI", name: "SEBI", bgColor: "#dcfce7", url: "https://www.sebi.gov.in" },
+        { shortName: "MC", name: "Money Control", bgColor: "#f3e8ff", url: "https://www.moneycontrol.com" }
+      ],
+      chartLabels: ["Upcoming", "New Listed", "Ongoing"],
+      
+      chartData: [ipoComing, ipoNewListed, ipoOngoing],
+      chartColors: ["#8495ec", "#586acb", "#c7ccff"],
+      chartLegend: [
+        { label: "Upcoming", count: ipoComing, color: "#8495ec" },
+        { label: "New Listed", count: ipoNewListed, color: "#586acb" },
+        { label: "Ongoing", count: ipoOngoing, color: "#c7ccff" }
+      ]
+    };
 
-      // Helper functions for formatting dates and status colors
-      const formatDate = dateString => {
-          if (!dateString || dateString === "Not Issued") return "Not Issued";
-          const date = new Date(dateString);
-          return isNaN(date.getTime()) ? "Not Issued" : date.toLocaleDateString('en-GB').replace(/\//g, '-');
-      };
-
-      const getStatusColor = status => {
-          switch (status.toLowerCase()) {
-              case 'ongoing': return 'success';
-              case 'coming': return 'warning';
-              case 'new listed': return 'danger';
-              default: return 'secondary';
-          }
-      };
-
-      res.render('listings/nav.ejs', { 
-          user: req.user,
-          ipos,
-          currentPage: page,
-          totalPages,
-          formatDate,
-          getStatusColor
-      });
+    // Also load any additional data you need (e.g., ipos for other sections)
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+    const ipos = await IPO.find()
+      .sort({ listingDate: -1 })
+      .skip(skip)
+      .limit(limit);
+    const totalIpos = await IPO.countDocuments();
+    const totalPages = Math.ceil(totalIpos / limit);
+    
+    // Pass dashboardData along with other variables to nav.ejs
+    res.render('listings/nav.ejs', { 
+      user: req.user,
+      dashboardData,
+      ipos,
+      currentPage: page,
+      totalPages,
+      formatDate,
+      getStatusColor: status => {
+        switch (status.toLowerCase()) {
+          case 'ongoing': return 'success';
+          case 'coming': return 'warning';
+          case 'new listed': return 'danger';
+          default: return 'secondary';
+        }
+      }
+    });
   } catch (error) {
-      console.error('Error rendering dashboard:', error);
-      res.status(500).send('Internal Server Error');
+    console.error('Error rendering dashboard:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
 
-// Protected management endpoints
+
+// Protected management endpoints for API management
 app.get('/management/apis', ensureAuthenticated, async (req, res) => {
   try {
     const apis = await Api.find();
@@ -408,7 +480,6 @@ app.get('/management/apis', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Add a new API
 app.post('/management/apis', ensureAuthenticated, async (req, res) => {
   try {
     const newApi = new Api(req.body);
@@ -420,7 +491,6 @@ app.post('/management/apis', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Update an existing API
 app.put('/management/apis/:id', ensureAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
@@ -436,7 +506,6 @@ app.put('/management/apis/:id', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Delete an API
 app.delete('/management/apis/:id', ensureAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
@@ -451,6 +520,6 @@ app.delete('/management/apis/:id', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Server start
+// Start the server
 const PORT = 3001;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
