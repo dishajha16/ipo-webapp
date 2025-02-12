@@ -59,3 +59,52 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const brokers = [
+        { name: "Upstox", rating: "⭐⭐⭐⭐⭐", reviews: "15K", accounts: "50.2K", openingCharge: "₹0", maintenanceCharge: "₹200", deliveryBrokerage: "₹20", intradayBrokerage: "₹20", logo: "upstox-logo.png" },
+        { name: "Angel One", rating: "⭐⭐⭐⭐", reviews: "15K", accounts: "50.2K", openingCharge: "₹0", maintenanceCharge: "₹20/month", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "angelone-logo.png" },
+        { name: "Groww", rating: "⭐⭐⭐⭐", reviews: "20K", accounts: "60K", openingCharge: "₹0", maintenanceCharge: "₹200", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "groww-logo.png" },
+        { name: "Dhan", rating: "⭐⭐⭐⭐", reviews: "12K", accounts: "30K", openingCharge: "₹0", maintenanceCharge: "₹180", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "dhan-logo.png" },
+        { name: "Alice Blue", rating: "⭐⭐⭐⭐", reviews: "8K", accounts: "25K", openingCharge: "₹0", maintenanceCharge: "₹150", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "aliceblue-logo.png" },
+        { name: "Axis Direct", rating: "⭐⭐⭐⭐", reviews: "10K", accounts: "35K", openingCharge: "₹250", maintenanceCharge: "₹300", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "axisdirect-logo.png" },
+        { name: "Fyers", rating: "⭐⭐⭐⭐", reviews: "5K", accounts: "15K", openingCharge: "₹0", maintenanceCharge: "₹120", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "fyers-logo.png" },
+        { name: "Geojit", rating: "⭐⭐⭐⭐", reviews: "7K", accounts: "22K", openingCharge: "₹0", maintenanceCharge: "₹240", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "geojit-logo.png" },
+        { name: "HDFC Securities", rating: "⭐⭐⭐⭐", reviews: "18K", accounts: "80K", openingCharge: "₹999", maintenanceCharge: "₹500", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "hdfc-logo.png" },
+        { name: "Zerodha", rating: "⭐⭐⭐⭐⭐", reviews: "50K", accounts: "200K", openingCharge: "₹200", maintenanceCharge: "₹300", deliveryBrokerage: "₹0", intradayBrokerage: "₹20", logo: "zerodha-logo.png" }
+    ];
+
+    const brokersList = document.getElementById("brokers-list");
+
+    brokers.forEach(broker => {
+        const brokerCard = document.createElement("div");
+        brokerCard.classList.add("broker-card");
+
+        brokerCard.innerHTML = `
+            <div class="broker-info">
+                <div class="broker-name">${broker.name}</div>
+                <div class="rating">${broker.rating}</div>
+                <div>👤 ${broker.reviews} Reviews &nbsp; 📊 ${broker.accounts} Accounts</div>
+                <div class="features">
+                    <span class="feature">✔ Equity</span>
+                    <span class="feature">✔ Commodity</span>
+                    <span class="feature">✔ Currency</span>
+                    <span class="feature">✔ Futures</span>
+                    <span class="feature">✔ Options</span>
+                </div>
+                <div class="charges">
+                    A/C Opening Charge: ${broker.openingCharge} <br>
+                    Maintenance Charge: ${broker.maintenanceCharge} <br>
+                    Delivery Brokerage: ${broker.deliveryBrokerage} <br>
+                    Intraday Brokerage: ${broker.intradayBrokerage}
+                </div>
+                <div class="buttons">
+                    <button class="open-account">Open A/C 🚀</button>
+                    <button class="learn-more">Learn More</button>
+                </div>
+            </div>
+            <img src="images/${broker.logo}" alt="${broker.name}" class="broker-logo">
+        `;
+
+        brokersList.appendChild(brokerCard);
+    });
+});
