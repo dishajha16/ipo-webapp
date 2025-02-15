@@ -5,7 +5,7 @@
 
 <div class="col-12 p-0 mb-4">
   <div class="container-fluid">
-    <div class="main-title">
+    <div class="main-title" style="padding: 20px;">
       <p class="mb-2" style="font-size: 80%;">
         <a href="#" style="text-decoration: none;">Bluestock</a> 
         <a href="#" style="text-decoration: none; color: black;">>IPO</a> 
@@ -663,7 +663,27 @@
     </div>
   </div>
 </div>
+<div id="footer-placeholder"></div>
 
+<script>
+  // Dynamic Footer Loading
+  fetch('footer.html')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Error loading footer:', error);
+    });
+
+
+    
+</script>
 
 
 
