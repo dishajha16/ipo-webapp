@@ -1,4 +1,4 @@
-/* General Styling */
+/* 🔹 General Page Styling */
 body {
   background-color: rgb(245, 245, 245);
   margin: 0;
@@ -8,132 +8,245 @@ body {
   min-height: 100vh;
 }
 
-/* Center Content */
+/* 🔹 Center Content */
 .container {
   max-width: 1200px;
   width: 100%;
-  padding: 20px;
+  padding: 5px; /* Reduced padding for better spacing */
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin: 0 auto;
 }
 
-/* Navbar */
-.nav-item a {
-  font-size: 0.85rem;
-  padding: 0.5rem 0.75rem;
-}
-
-/* IPO Cards Layout - Grid System */
+/* 🔹 IPO Cards Grid */
 .hello {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default: 3 cards per row */
+  grid-template-columns: repeat(3, 1fr); /* Ensures 3 cards per row */
   gap: 20px;
   justify-content: center;
-  max-width: 1040px;
+  max-width: 1140px;
   margin: 0 auto;
+  padding-top: 10px;
 }
 
-/* Individual Cards */
+/* 🔹 IPO Cards */
 .card {
   width: 100%;
-  max-width: 320px;
-  height: auto;
-  border-radius: 8px;
-  border-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 542px; /* ⬆ Increased width */
+  height: 450px; /* ⬆ Increased height */
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
   background: white;
-  padding: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
 
-/* Card Buttons */
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* 🔹 Logo & Title */
+.all-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.all-title img {
+  max-height: 50px; /* Adjust logo height */
+  width: auto;
+}
+
+.all-title h4 {
+  font-size: 1.3rem; /* Bigger font size */
+  color: rgb(68, 89, 194);
+  font-weight: bold;
+}
+
+/* 🔹 Card Text Alignment */
+.row.text-start {
+  text-align: left;
+  font-size: 1.05rem;
+}
+
+/* 🔹 Buttons */
 .card-btn {
-  margin: 0 !important;
-  padding: 0%;
-  gap: 0 !important;
-  padding-top: 2%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-top: 10px;
 }
 
-.twoButton .btn {
-  background-color: #f05537;
+.btn-outline-primary {
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  border: 2px solid blue;
+  padding: 10px 20px; /* Larger button */
 }
 
-/* FAQ Section */
+.btn-secondary {
+  background-color: #f05537; /* 🔸 Fix DRHP button color */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px; /* Increased button padding */
+}
+
+.btn-outline-primary,
+.btn-secondary {
+  min-width: 100px;
+  text-align: center;
+}
+
+/* 🔹 FAQ Section Styling */
 .faq-container {
-  max-width: 95%;
-  margin: 2% auto;
+  max-width: 85%;
+  margin: 3% auto;
+  padding: 20px;
 }
 
 .faq-title {
-  margin-left: 3.5rem;
-  margin-top: 6rem;
-  margin-bottom: 6rem;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
 }
 
+/* 🔹 Accordion Container */
 .accordion {
-  font-weight: bolder;
-  margin-top: 20px;
-  max-width: 95%;
-  margin: 0 auto;
+  font-weight: bold;
+  max-width: 100%;
 }
 
+/* 🔹 Individual Accordion Items */
 .accordion-item {
-  margin-bottom: 25px;
-  min-height: 80px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: 0.3s;
 }
 
+/* 🔹 Accordion Header */
 .accordion-button {
-  font-weight: bolder;
-  font-size: large;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 15px;
+  color: #333;
+  background-color: #f8f9fa;
+  transition: background 0.3s ease-in-out;
+  border-radius: 6px;
 }
 
-/* Responsive Design for All Screens */
+/* 🔹 On Hover: Accordion Button */
+.accordion-button:hover {
+  background-color: #e9ecef;
+}
 
-/* 🔹 Large Desktops (Above 1440px) */
+/* 🔹 Active Button (When Clicked) */
+.accordion-button:not(.collapsed) {
+  color: #004085;
+  background-color: #d1ecf1;
+  box-shadow: none;
+}
+
+/* 🔹 Accordion Body (Answer Section) */
+.accordion-body {
+  font-size: 1rem;
+  color: #444;
+  padding: 15px;
+  line-height: 1.5;
+}
+
+/* 🔹 Remove Box Shadow */
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+/* 🔹 Responsive Adjustments */
+
+/* Large Screens (Above 1440px) */
 @media (min-width: 1440px) {
   .hello {
-      grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-      max-width: 1040px;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+  }
+
+  .faq-container {
+      max-width: 75%;
   }
 }
 
-/* 🔹 Standard Desktops & Laptops (Between 1040px - 1439px) */
+/* Standard Laptops (1040px - 1439px) */
 @media (min-width: 1040px) and (max-width: 1439px) {
   .hello {
       grid-template-columns: repeat(3, 1fr);
-      max-width: 1040px;
+      gap: 20px;
+      max-width: 1140px;
+  }
+
+  .card {
+      max-width: 542px;
+      height: 450px;
+  }
+
+  .faq-container {
+      max-width: 85%;
   }
 }
 
-/* 🔹 Tablets & Small Laptops (Between 768px - 1039px) */
+/* Tablets & Small Laptops (768px - 1039px) */
 @media (min-width: 768px) and (max-width: 1039px) {
   .hello {
       grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-      max-width: 90%;
-  }
-}
-
-/* 🔹 Mobile Screens (Between 320px - 767px) */
-@media (max-width: 767px) {
-  .hello {
-      grid-template-columns: repeat(1, 1fr); /* 1 card per row */
       max-width: 95%;
-      padding: 10px;
+      gap: 20px;
   }
 
   .card {
       max-width: 95%;
-      width: 95%;
+      height: 420px;
+  }
+
+  .faq-container {
+      max-width: 90%;
+  }
+}
+
+/* Mobile Screens (Below 768px) */
+@media (max-width: 767px) {
+  .hello {
+      grid-template-columns: repeat(1, 1fr);
+      max-width: 98%;
+      padding: 5px;
+  }
+
+  .card {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
       margin: 0 auto;
   }
 
   .faq-title {
-      margin-left: 2%;
+      font-size: 1.5rem;
+  }
+
+  .accordion-button {
+      font-size: 1rem;
+  }
+
+  .accordion-body {
+      font-size: 0.95rem;
   }
 }
 
-/* 🔹 Extra Small Screens (320px - 479px) */
+/* Extra Small Screens (320px - 479px) */
 @media (max-width: 479px) {
   .hello {
       grid-template-columns: repeat(1, 1fr);
