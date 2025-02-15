@@ -25,9 +25,9 @@ router.get('/listings', async (req, res) => {
 // Other public pages
 router.get('/community', (req, res) => res.render('listings/community.ejs', { error: req.flash('error') }));
 router.get('/support', (req, res) => res.render('listings/support.ejs', { error: req.flash('error') }));
-router.get('/login', (req, res) => res.render('listings/login.ejs', { error: req.flash('error') }));
 router.get('/signup', (req, res) => res.render('listings/signup.ejs', { error: req.flash('error') }));
 router.get('/investors', (req, res) => res.render('listings/Shark_Investors.ejs', { error: req.flash('error') }));
+router.get('/brokers', (req, res) => res.render('listings/brokers.ejs', { error: req.flash('error') }));
 
 
 // IPO submission route

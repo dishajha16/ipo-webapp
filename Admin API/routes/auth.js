@@ -1,7 +1,7 @@
 // routes/auth.js
 const express = require('express');
 const router = express.Router();
-const PublicUser = require('../models/PublicUser'); // Import the PublicUser model
+const PublicUser = require('../models/User'); // Import the PublicUser model
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
@@ -45,7 +45,7 @@ router.post('/signup', async (req, res) => {
         await newPublicUser.save(); 
         console.log("New user saved successfully:", newPublicUser); // Log the saved user
         req.flash('success', 'Signup successful! Please login.');
-        res.redirect('/login'); 
+        res.redirect('/admin/login'); 
     } catch (error) {
         console.error('Error saving public user:', error);
         if (error.code === 11000) { // Duplicate key error (username or email)
@@ -71,5 +71,7 @@ router.post('/signup', async (req, res) => {
 
 // Login route
 //... your login route code...
+
+
 
 module.exports = router;

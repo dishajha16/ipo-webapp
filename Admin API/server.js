@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const methodOverride = require('method-override');
@@ -9,22 +8,10 @@ const passport = require('passport');
 
 // Load configuration files (database & passport)
 require('./config/database');
-require('./config/passport');
+require('./config/passport'); // Ensure this includes Google Strategy setup
 
 // Create Express app
 const app = express();
-
-// Create initial admin if not exists
-const User = require('./models/User');
-const bcrypt = require('bcryptjs');
-(async function createInitialAdmin() {
-  const existingAdmin = await User.findOne({ username: 'admin' });
-  if (!existingAdmin) {
-    const hashedPassword = bcrypt.hashSync('admin123', 12);
-    await new User({ username: 'admin', password: hashedPassword }).save();
-    console.log('Initial admin created');
-  }
-})();
 
 // Middleware Setup
 app.use(cors());
@@ -43,13 +30,17 @@ app.use(session({
   secret: 'securepassword',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: { secure: false } // Set to `true` in production with HTTPS
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+// Flash Messages Middleware
 app.use((req, res, next) => {
   res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  res.locals.user = req.user; // Make user available in templates
   next();
 });
 
@@ -63,6 +54,17 @@ app.use('/', require('./routes/auth')); // Add this line to include auth routes
 app.use('/admin', require('./routes/admin'));
 app.use('/api', require('./routes/api'));
 app.use('/management', require('./routes/management'));
+
+// Google OAuth Routes
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/admin/login' }),
+  (req, res) => {
+    // Successful authentication, redirect to /admin/dashboard
+    req.flash('success', 'Logged in successfully via Google.');
+    res.redirect('/admin/dashboard');
+  });
 
 // Start the Server
 const PORT = process.env.PORT || 3001;
