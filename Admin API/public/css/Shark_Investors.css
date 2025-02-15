@@ -1,84 +1,82 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
-    margin: 0;
-    padding: 0;
-  }
-  
-    text-align: center;
-    padding: 1em;
-    background-color: #1c1c1e;
-    color: white;
-  }
-  
-  h1 {
-    margin: 0;
-  }
-  
-  main {
-    padding: 2em;
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
-  p {
-    text-align: center;
-    font-size: 1.1em;
-  }
-  
-  #searchBar {
-    display: block;
-    margin: 1em auto;
-    padding: 0.5em;
-    width: 80%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 40px;
-    padding: 2em 0;
-  }
-  
-  
-  .card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1em;
-    min-height: 300px;
-    text-align: center;
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 2em 0;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+}
 
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+header {
+  text-align: center;
+  padding: 1em;
+  background-color: #1c1c1e;
+  color: white;
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  padding: 2em;
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-size: 1.1em;
+}
+
+#searchBar {
+  display: block;
+  margin: 1em auto;
+  padding: 0.5em;
+  width: 80%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 40px;
+  padding: 2em 0;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  min-height: 300px;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 2em 0;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
