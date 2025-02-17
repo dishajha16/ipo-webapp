@@ -5,8 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-
-
+const authRoutes = require('./routes/authRoutes');
 
 
 // Load configuration files (database & passport)
@@ -22,6 +21,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Disable caching for all responses
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate'); // HTTP 1.1.
+  res.set('Pragma', 'no-cache'); // HTTP 1.0.
+  res.set('Expires', '0'); // Proxies.
+  next();
+});
+
 
 // EJS Setup
 app.engine('ejs', require('ejs-mate'));
@@ -62,6 +70,8 @@ app.use('/', require('./routes/public'));
 app.use('/', require('./routes/auth')); // Add this line to include auth routes
 app.use('/api', require('./routes/api'));
 app.use('/management', require('./routes/management'));
+app.use('/auth', authRoutes);
+
 
 // Mount Admin Routes
 const adminRoutes = require('./routes/admin');

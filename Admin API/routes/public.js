@@ -28,7 +28,7 @@ router.get('/support', (req, res) => res.render('listings/support.ejs', { error:
 router.get('/signup', (req, res) => res.render('listings/signup.ejs', { error: req.flash('error') }));
 router.get('/investors', (req, res) => res.render('listings/Shark_Investors.ejs', { error: req.flash('error') }));
 router.get('/brokers', (req, res) => res.render('listings/brokers.ejs', { error: req.flash('error') }));
-
+router.get('/forgotpass', (req, res) => res.render('listings/forgotpass.ejs', { error: req.flash('error') }));
 
 // IPO submission route
 router.post('/admin/ipo/new', async (req, res) => {

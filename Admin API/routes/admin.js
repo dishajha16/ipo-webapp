@@ -12,13 +12,27 @@ const upload = multer({
 });
 
 // Admin Login Routes
-router.get('/login', (req, res) => res.render('listings/admin_login.ejs', { error: req.flash('error') }));
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/admin/dashboard',
-  failureRedirect: '/admin/login',
-  failureFlash: true
-}));
-router.get('/logout', (req, res) => { req.logout(); res.redirect('/admin/login'); });
+router.get('/login', (req, res) => {
+  console.log('GET /admin/login - Rendering login page...');
+  
+  // Simulate a flash error message for testing purposes
+  const flashError = req.flash('error');
+  console.log('Flash error messages:', flashError);
+  
+  // Render the admin_login.ejs file and pass the flash message
+  res.render('listings/admin_login.ejs', { error: flashError });
+});
+
+router.post('/login', (req, res, next) => {
+  console.log('POST /admin/login - Authenticating user...');
+  
+  passport.authenticate('local', {
+    successRedirect: '/admin/dashboard',
+    failureRedirect: '/admin/login',
+    failureFlash: true
+  })(req, res, next);
+});
+// router.get('/logout', (req, res) => { req.logout(); res.redirect('/admin/login'); });
 
 // Dashboard Route
 router.get('/dashboard', ensureAuthenticated, async (req, res) => {
@@ -133,4 +147,13 @@ router.put(
     res.redirect(`/admin/dashboard`);
   })
 );
+
+
+
+router.get('/logout', (req, res, next) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/admin/login');
+  });
+});
 
