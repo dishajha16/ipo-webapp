@@ -1,260 +1,199 @@
-/* 🔹 General Page Styling */
 body {
   background-color: rgb(245, 245, 245);
-  margin: 0;
-  overflow-x: hidden;
+  margin: 0; /* Remove any default margin */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   padding: 0;
-  width: 100% !important;
+  width: 100% !important ;
   min-height: 100vh;
 }
 
-/* 🔹 Center Content */
-.container {
-  max-width: 1200px;
-  width: 100%;
-  padding: 5px; /* Reduced padding for better spacing */
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin: 0 auto;
+.nav-item a {
+  font-size: 0.85rem; /* Adjust font size */
+  padding: 0.5rem 0.75rem; /* Maintain proper spacing */
 }
 
-/* 🔹 IPO Cards Grid */
-.hello {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Ensures 3 cards per row */
-  gap: 20px;
-  justify-content: center;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding-top: 10px;
+.nav {
+  padding-left: 2rem;
 }
 
-/* 🔹 IPO Cards */
+.twoButton {
+  padding-left: 2rem;
+}
+
+.twoButton .btn {
+  background-color: #f05537;
+}
+
 .card {
-  width: 100%;
-  max-width: 542px; /* ⬆ Increased width */
-  height: 450px; /* ⬆ Increased height */
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
-  background: white;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.02);
-}
-
-/* 🔹 Logo & Title */
-.all-title {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-.all-title img {
-  max-height: 50px; /* Adjust logo height */
-  width: auto;
-}
-
-.all-title h4 {
-  font-size: 1.3rem; /* Bigger font size */
-  color: rgb(68, 89, 194);
-  font-weight: bold;
-}
-
-/* 🔹 Card Text Alignment */
-.row.text-start {
-  text-align: left;
-  font-size: 1.05rem;
-}
-
-/* 🔹 Buttons */
-.card-btn {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  padding-top: 10px;
-}
-
-.btn-outline-primary {
-  background-color: white;
-  color: blue;
-  font-weight: bold;
-  border: 2px solid blue;
-  padding: 10px 20px; /* Larger button */
-}
-
-.btn-secondary {
-  background-color: #f05537; /* 🔸 Fix DRHP button color */
-  color: white;
-  font-weight: bold;
-  border: none;
-  padding: 10px 20px; /* Increased button padding */
-}
-
-.btn-outline-primary,
-.btn-secondary {
-  min-width: 100px;
-  text-align: center;
-}
-
-/* 🔹 FAQ Section Styling */
-.faq-container {
-  max-width: 85%;
-  margin: 3% auto;
-  padding: 20px;
-}
-
-.faq-title {
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #333;
-}
-
-/* 🔹 Accordion Container */
-.accordion {
-  font-weight: bold;
-  max-width: 100%;
-}
-
-/* 🔹 Individual Accordion Items */
-.accordion-item {
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  transition: 0.3s;
-}
-
-/* 🔹 Accordion Header */
-.accordion-button {
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 15px;
-  color: #333;
-  background-color: #f8f9fa;
-  transition: background 0.3s ease-in-out;
-  border-radius: 6px;
-}
-
-/* 🔹 On Hover: Accordion Button */
-.accordion-button:hover {
-  background-color: #e9ecef;
-}
-
-/* 🔹 Active Button (When Clicked) */
-.accordion-button:not(.collapsed) {
-  color: #004085;
-  background-color: #d1ecf1;
+  width: 100%; /* Ensure cards take the full available width */
+  max-width: 542px; /* Prevent cards from growing too large */
+  height: 450px; /* You can keep the fixed height */
+  border-radius: 0px; /* Optional: Rounded corners */
+  font-size: large;
+  border-color: white;
   box-shadow: none;
 }
 
-/* 🔹 Accordion Body (Answer Section) */
-.accordion-body {
-  font-size: 1rem;
-  color: #444;
-  padding: 15px;
-  line-height: 1.5;
+.row-cols-md-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Ensure 3 cards in a row on medium screens */
 }
 
-/* 🔹 Remove Box Shadow */
+.col-4 {
+  margin-bottom: 12px; /* Increase the bottom margin for spacing between rows */
+}
+
+.contain {
+  display: flex !important; /* Use flexbox for layout */
+  justify-content: center !important; /* Center the contents horizontally */
+  text-align: center !important;
+}
+
+.container {
+  max-width: 1200px; /* Adjust max width to prevent it from stretching */
+  width: 100%;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Contain content inside */
+}
+.accordion {
+  font-weight: bolder;
+  margin-top: 20px;
+  /* Add space above the accordion */
+}
+.accordion-item {
+  margin-bottom: 25px;
+  min-height: 80px;
+}
 .accordion-button:focus {
   box-shadow: none;
 }
 
-/* 🔹 Responsive Adjustments */
-
-/* Large Screens (Above 1440px) */
-@media (min-width: 1440px) {
-  .hello {
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 1200px;
-  }
-
-  .faq-container {
-      max-width: 75%;
-  }
+.accordion-button {
+  font-weight: bolder;
+  font-size: large;
 }
 
-/* Standard Laptops (1040px - 1439px) */
-@media (min-width: 1040px) and (max-width: 1439px) {
-  .hello {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1140px;
-  }
+.accordion-button.collapsed {
+  font-weight: bolder;
+  font-size: large;
+}
 
+h2 {
+  margin-bottom: 1%; /* Add spacing below the heading */
+}
+
+.accordion {
+  max-width: 95%; /* Adjust this value */
+  margin: 0 auto; /* Center the accordion */
+}
+
+.faq-title {
+  margin-left: 3.5rem;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 2000px) {
   .card {
-      max-width: 542px;
-      height: 450px;
+    max-width: 455px;
+    font-size: medium;
+    height: 400px !important;
+    /* Smaller card width for tablets */
   }
-
+  .hello {
+    column-gap: 0px; /* Horizontal space between columns */
+    row-gap: 30px;
+  }
+  .row-cols-md-3 {
+    margin: 1%;
+  }
+  .container-fluid {
+    margin: 2%;
+  }
+  .main-title {
+    margin: 1%;
+  }
+  .faq-title {
+    margin-left: 2.5%;
+  }
   .faq-container {
-      max-width: 85%;
+    margin: 2%;
   }
 }
 
-/* Tablets & Small Laptops (768px - 1039px) */
+.btnA {
+  background-color: rgb(255, 255, 255);
+}
+
+.card-btn {
+  margin: 0 !important;
+  padding: 0%;
+  gap: 0 !important;
+  padding-top: 2%;
+}
+
+.all-title {
+  padding-left: 1%;
+}
+
+
+
+
+/* 📱 Responsive for Tablets & Mobile Screens */
 @media (min-width: 768px) and (max-width: 1039px) {
-  .hello {
+  .row-cols-md-3 {
       grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
       max-width: 95%;
       gap: 20px;
   }
 
   .card {
-      max-width: 95%;
-      height: 420px;
-  }
-
-  .faq-container {
-      max-width: 90%;
+      max-width: 420px;
+      height: 400px;
   }
 }
 
-/* Mobile Screens (Below 768px) */
-@media (max-width: 767px) {
-  .hello {
-      grid-template-columns: repeat(1, 1fr);
+@media (min-width: 480px) and (max-width: 767px) {
+  .row-cols-md-3 {
+      grid-template-columns: repeat(1, 1fr); /* 1 card per row */
       max-width: 98%;
+  }
+
+  .card {
+      max-width: 90%;
+      height: 380px;
+  }
+}
+
+@media (max-width: 479px) {
+  .row-cols-md-3 {
+      grid-template-columns: repeat(1, 1fr); /* 1 card per row */
+      max-width: 100%;
       padding: 5px;
   }
 
   .card {
-      max-width: 100%;
-      width: 100%;
-      height: auto;
-      margin: 0 auto;
+      max-width: 90% !important;  /* Fit inside the mobile screen */
+      height: auto !important;    /* Allow content to determine height */
+      margin: 0 auto;             /* Center the card */
+      padding: 15px;              /* Reduce padding */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  .faq-title {
-      font-size: 1.5rem;
+  /* Reduce button width for mobile */
+  .card-btn {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
   }
 
-  .accordion-button {
-      font-size: 1rem;
-  }
-
-  .accordion-body {
-      font-size: 0.95rem;
-  }
-}
-
-/* Extra Small Screens (320px - 479px) */
-@media (max-width: 479px) {
-  .hello {
-      grid-template-columns: repeat(1, 1fr);
-      max-width: 98%;
-  }
-
-  .card {
-      max-width: 100%;
-      width: 100%;
+  .btn-outline-primary,
+  .btn-secondary {
+      width: 80%; /* Make buttons wider */
+      text-align: center;
+      padding: 8px 0;
   }
 }
