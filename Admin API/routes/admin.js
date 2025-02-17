@@ -6,6 +6,10 @@ const IPO = require('../models/IPO');
 const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 const { formatDate } = require('../helpers/dateHelpers');
 const { getStatusColor } = require('../helpers/statusHelpers');
+const multer = require('multer');
+const upload = multer({
+  limits: { fileSize: 10 * 1024 * 1024 } // 10 MB file size limit
+});
 
 // Admin Login Routes
 router.get('/login', (req, res) => res.render('listings/admin_login.ejs', { error: req.flash('error') }));
@@ -20,17 +24,17 @@ router.get('/logout', (req, res) => { req.logout(); res.redirect('/admin/login')
 router.get('/dashboard', ensureAuthenticated, async (req, res) => {
   try {
     const totalIPO = await IPO.countDocuments(),
-      ipoOngoing = await IPO.countDocuments({ status: { $regex: /ongoing/i } }),
-      ipoNewListed = await IPO.countDocuments({ status: { $regex: /new listed/i } }),
-      ipoComing = await IPO.countDocuments({ status: { $regex: /coming/i } });
-    const ipoGain = ipoOngoing,
-      ipoLoss = totalIPO - ipoGain;
+      ipoOngoing = 16,
+      ipoNewListed = 10 ,
+      ipoComing = 6;
+    const ipoLoss = 6,
+      ipoGain = totalIPO - ipoLoss;
     let boardStartDate = 'N/A';
     const earliestIPO = await IPO.findOne().sort({ listingDate: 1 }).exec();
     if (earliestIPO && earliestIPO.listingDate)
       boardStartDate = earliestIPO.listingDate.toLocaleDateString('en-GB');
     const dashboardData = {
-      description: 'Adipiscing elit, sed do eiusmod tempor',
+      description: '',
       totalIPO,
       ipoGain,
       ipoLoss,
@@ -88,3 +92,45 @@ router.get('/upcoming-ipo', ensureAuthenticated, async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
+const mongoose = require('mongoose');
+
+// Middleware to handle async errors
+function wrapAsync(fn) {
+  return function (req, res, next) {
+    fn(req, res, next).catch(next);
+  };
+}
+
+// Route to edit an IPO listing
+router.get(
+  '/ipo/edit/:id',
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send('Invalid ID');
+    }
+    const ipo = await IPO.findById(id);
+    if (!ipo) {
+      return res.status(404).send('IPO not found');
+    }
+    res.render('includes/update.ejs', { ipo });
+  })
+);
+
+
+router.put(
+  "/ipo/edit/:id",
+  upload.single('logo'), // process the file upload from field 'logo'
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    await IPO.findByIdAndUpdate(id, { ...req.body });
+    console.log(req.body);
+    res.redirect(`/admin/dashboard`);
+  })
+);
+

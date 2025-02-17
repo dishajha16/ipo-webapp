@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="/css/IPO_model_edit.css">
+
+<main class="main-content">
+    <section class="form-container">
+      <form method="post" action="/admin/ipo/edit/<%= ipo._id %>?_method=PUT" enctype="multipart/form-data">
+        <!-- Logo Section -->
+        <div class="form-group logo-section">
+          <label>Company Logo</label>
+          <div class="logo-actions">
+            <img src="<%= ipo.logo %>" alt="Company Logo" class="company-logo">
+            <button type="button" class="upload-btn">Upload Logo</button>
+            <button type="button" class="delete-btn">Delete</button>
+          </div>
+          <input type="hidden" name="logo" value="/placeholder-logo.png">
+        </div>
+
+        <!-- IPO Details Grid -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" placeholder="Enter company name" name="companyName" value="<%= ipo.companyName %>" required>
+          </div>
+          <div class="form-group">
+            <label>Price Band</label>
+            <input type="text" value="<%= ipo.priceBand %>" placeholder="Enter price band" name="priceBand" required>
+          </div>
+          <div class="form-group">
+            <label>Open</label>
+            <input type="date" value="<%= new Date(ipo.open).toISOString().split('T')[0] %>" name="open" required>
+          </div>          
+          <div class="form-group">
+            <label>Close</label>
+            <input type="date" value="<%= new Date(ipo.close).toISOString().split('T')[0] %>" name="close" required>
+          </div>          
+          <div class="form-group">
+            <label>Issue Size</label>
+            <input type="text" value="<%= ipo.issueSize %>" placeholder="Enter issue size" name="issueSize" required>
+          </div>
+          <div class="form-group">
+            <label>Issue Type</label>
+            <select name="issueType" required>
+              <option value="public" <%= ipo.issueType === 'public' ? 'selected' : '' %>>Public</option>
+              <option value="private" <%= ipo.issueType === 'private' ? 'selected' : '' %>>Private</option>
+              <option value="rights" <%= ipo.issueType === 'rights' ? 'selected' : '' %>>Rights</option>
+            </select>
+          </div>          
+          <div class="form-group">
+            <label>Listing Date</label>
+            <input type="date" value="<%= new Date(ipo.listingDate).toISOString().split('T')[0] %>" name="listingDate" required>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select name="status" required>
+              <option value="not-issued" <%= ipo.status === 'not-issued' ? 'selected' : '' %>>Not Issued</option>
+              <option value="listed" <%= ipo.status === 'listed' ? 'selected' : '' %>>Listed</option>
+              <option value="cancelled" <%= ipo.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+            </select>
+          </div>          
+          <div class="form-group">
+            <label>IPO Price</label>
+            <input type="text" value="<%= ipo.ipoPrice %>" placeholder="Enter IPO price" name="ipoPrice" required>
+          </div>
+          <div class="form-group">
+            <label>Listing Price</label>
+            <input type="text" value="<%= ipo.listingPrice %>" placeholder="Enter listing price" name="listingPrice" required>
+          </div>
+          <div class="form-group">
+            <label>Listing Gain</label>
+            <input type="text" value="<%= ipo.listingGain %>" placeholder="Enter listing gain" name="listingGain" required>
+          </div>
+          <div class="form-group">
+            <label>Listed Date</label>
+            <input type="date" value="<%= new Date(ipo.listedDate).toISOString().split('T')[0] %>" name="listedDate" required>
+          </div>
+          <div class="form-group">
+            <label>CMP</label>
+            <input type="text" value="<%= ipo.cmp %>" placeholder="Enter CMP" name="cmp" required>
+          </div>
+          <div class="form-group">
+            <label>Current Return</label>
+            <input type="text" value="<%= ipo.currentReturn %>" placeholder="Enter current return" name="currentReturn" required>
+          </div>
+          <div class="form-group">
+            <label>RHP</label>
+            <input type="url" value="<%= ipo.rhp %>" placeholder="RHP PDF link" name="rhp" required>
+          </div>
+          <div class="form-group">
+            <label>DRHP</label>
+            <input type="url" value="<%= ipo.drhp %>" placeholder="DRHP PDF link" name="drhp" required>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-dark edit-btn mt-3 " style="background-color: #2a7aff; color: white;">Edit</button>
+          <button type="button" class="cancel" id="cancel"><a style="  text-decoration: none; color: black;" href="/admin/dashboard">Cancel</a></button>
+        </div>
+      </form>
+    </section>
+
+    <div id="success-message" style="display: none; text-align: center; font-size: 18px; color: green; margin-top: 20px;">
+      Your form has been successfully registered!
+    </div>
+</main>
+
+<script src="/js/IPOmodel(edit).js"></script>

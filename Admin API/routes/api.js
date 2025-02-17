@@ -55,6 +55,8 @@ router.put('/ipos/:id', ensureAuthenticated, async (req, res) => {
   }
 });
 
+
+
 // Delete IPO (protected)
 router.delete('/ipos/:id', ensureAuthenticated, async (req, res) => {
   try {
