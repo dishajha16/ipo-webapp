@@ -6,9 +6,51 @@ body {
     width: 100% !important ;
     min-height: 100vh;
   }
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  border-bottom: 1px solid #ddd;
+}
+
+header .logo {
+  height: 30px;
+}
+
+header .nav-link {
+  color: #333;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-right: 20px;
+}
+
+header .nav-link:hover {
+  text-decoration: underline;
+}
+
+header .btn-primary {
+  background-color: #3366ff;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+header .btn-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
   
-  .nav-item a {
-    font-size: 0.85rem; /* Adjust font size */
+  .nav-item a { /* Adjust font size */
     padding: 0.5rem 0.75rem; /* Maintain proper spacing */
   }
   
@@ -50,14 +92,7 @@ body {
     text-align: center !important;
   }
   
-  .container {
-    max-width: 1200px; /* Adjust max width to prevent it from stretching */
-    width: 100%;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Contain content inside */
-  }
+
   .accordion {
     font-weight: bolder;
     margin-top: 20px;
@@ -124,31 +159,72 @@ body {
     }
   }
   
-  @media (max-width: 360px) {
-    .card {
-      max-width: 325px;
-      font-size: small;
-      /* Smaller gap for tablets */
-  
-      /* Smaller card width for tablets */
-    }
-    .row-cols-md-3 {
-      display: grid;
+
+/* Media Query for Mobile Devices (Up to 768px) */
+@media (max-width: 768px) {
+  /* Adjust card layout for single column */
+  .container-fluid {
+    padding-right: 26px;
+  }
+
+  .row-cols-md-3 {
       grid-template-columns: repeat(1, 1fr);
-      /* Ensure 3 cards in a row on medium screens */
-    }
   }
-  .btnA {
-    background-color: rgb(255, 255, 255);
+
+  /* Reduce font sizes */
+  .nav-item a {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.6rem;
   }
-  
-  .card-btn {
-    margin: 0 !important;
-    padding: 0%;
-    gap: 0 !important;
-    padding-top: 2%;
+
+  .card {
+      max-width: 100%;
+      font-size: small;
+      height: auto; /* Allow height to adjust dynamically */
   }
-  
-  .all-title {
-    padding-left: 1%;
+
+  /* Adjust spacing */
+  .container {
+      padding: 10px;
   }
+
+  .faq-title {
+      margin-left: 1rem;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+  }
+
+  h2 {
+      font-size: 1.5rem;
+  }
+}
+
+/* Media Query for Smaller Mobile Devices (Up to 480px) */
+@media (max-width: 480px) {
+  /* Further reduce font sizes */
+  .nav-item a {
+      font-size: 0.6rem;
+      padding: 0.3rem 0.5rem;
+  }
+
+  .card {
+      max-width: 100%;
+      font-size: x-small;
+      height: auto;
+  }
+
+  /* Adjust spacing further */
+  .container {
+      padding: 5px;
+  }
+
+  .faq-title {
+      margin-left: 0.5rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+  }
+
+  h2 {
+      font-size: 1.2rem;
+  }
+}

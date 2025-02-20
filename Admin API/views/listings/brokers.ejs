@@ -8,8 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+            <%- include("../includes/header.ejs") %>
+
     <div class="container">
         <!-- Sidebar Navigation -->
+         
         <aside class="sidebar">
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -30,14 +34,14 @@
                 <h2 style="text-align: center;">Broker A vs. Broker B</h2>
                 <div class="broker-comparison">
                     <div class="broker-cards">
-                        <img src="images/angelone-logo.png" alt="Angel One">
+                        <img src="/angelone-logo.png" alt="Angel One">
                         <h3>Angel One</h3>
                         <p class="rating">⭐ 4.7</p>
                         <button>Open Demat Account</button>
                     </div>
                     <div class="vs">vs</div>
                     <div class="broker-cards">
-                        <img src="images/zerodha-logo.png" width="220px" alt="Zerodha">
+                        <img src="/zerodha-logo.png" width="220px" alt="Zerodha">
                         <h3>Zerodha</h3>
                         <p class="rating">⭐ 4.6</p>
                         <button>Open Demat Account</button>
@@ -119,4 +123,6 @@
 
     <script src="/js/brokers.js"></script>
 </body>
+
+<%- include("../includes/footer.ejs") %>
 </html>

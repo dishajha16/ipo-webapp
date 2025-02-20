@@ -13,24 +13,41 @@ html {
 /* Responsive Container */
 .container {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    flex-direction: row; /* Ensure sidebar and content are side by side */
+    align-items: flex-start; /* Align items at the top */
+    
 }
 
 /* Sidebar Adjustments */
 .sidebar {
-    width: 200px;
+    width: 200px; /* Fixed width */
     background: white;
     color: black;
     padding: 20px;
-    height: 100vh;
-    position: fixed;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    height: 100vh; /* Full viewport height */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.container {
+    display: flex;
+    padding: 0;
+}
+
+
+.content {
+    margin-left: 20px; /* Add spacing between sidebar and content */
+    padding: 20px;
+    width: calc(100% - 240px); /* Adjust width to account for the sidebar */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    height: calc(100vh - 120px); /* Match the height of the sidebar */
 }
 
 .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
@@ -54,7 +71,6 @@ html {
 
 /* Main Content */
 .content {
-    margin-left: 270px;
     padding: 20px;
     width: calc(100% - 270px);
     transition: margin-left 0.3s ease-in-out;
@@ -63,9 +79,7 @@ html {
 /* Responsive Sidebar */
 @media (max-width: 768px) {
     .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
+        display: none; /* This will hide the sidebar */
     }
 
     .content {
@@ -177,22 +191,12 @@ body {
     background-color: #f4f4f4;
 }
 
-header {
-    text-align: center;
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
-}
 
 .highlight {
     color: #28a745;
 }
 
-.container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-}
+
 
 .broker-card {
     display: flex;
