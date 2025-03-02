@@ -1,0 +1,271 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+/* Ensure smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Responsive Container */
+.container {
+    display: flex;
+    flex-direction: row; /* Ensure sidebar and content are side by side */
+    align-items: flex-start; /* Align items at the top */
+    
+}
+
+/* Sidebar Adjustments */
+.sidebar {
+    width: 200px; /* Fixed width */
+    background: white;
+    color: black;
+    padding: 20px;
+    height: 100vh; /* Full viewport height */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.container {
+    display: flex;
+    padding: 0;
+}
+
+
+.content {
+    margin-left: 20px; /* Add spacing between sidebar and content */
+    padding: 20px;
+    width: calc(100% - 240px); /* Adjust width to account for the sidebar */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    height: calc(100vh - 120px); /* Match the height of the sidebar */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    font-size: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar ul li a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.sidebar ul li:hover {
+    background: #f0f0f0;
+}
+
+/* Main Content */
+.content {
+    padding: 20px;
+    width: calc(100% - 270px);
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /* This will hide the sidebar */
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Cards and Ratings */
+.broker-comparison {
+    display: flex;
+    flex-wrap: wrap; /* Allows responsiveness */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.broker-cards{
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 250px;
+    flex: 1 1 auto; /* Ensures adaptability */
+}
+
+.broker-cards img, .rating-card img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.broker-cards button, .rating-card button {
+    background: #00bcd4;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+.rating-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: white;
+    padding: 20px;
+    width: 250px;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.rating-card h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rating-card p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #00bcd4;
+    color: white;
+}
+
+/* Buttons */
+button {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #059669;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .broker-comparison {
+        flex-direction: column;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+
+.highlight {
+    color: #28a745;
+}
+
+
+
+.broker-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.broker-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.broker-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rating {
+    color: #ffcc00;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.feature {
+    background: #e0f7fa;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.charges {
+    font-size: 14px;
+    color: gray;
+}
+
+.broker-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.open-account, .learn-more {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.open-account {
+    background: #28a745;
+    color: white;
+}
+
+.learn-more {
+    background: #007bff;
+    color: white;
+}

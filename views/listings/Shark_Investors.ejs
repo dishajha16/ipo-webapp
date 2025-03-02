@@ -1,0 +1,138 @@
+<% layout("/layouts/boilerplate") %>
+<%- include("../includes/header.ejs") %>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/Shark_Investors.css">
+  <main class="container my-4">
+    <section>
+      <h2>Shark Investors</h2>
+      <p>Look into the portfolio of these super investors to find out their favorite stocks.</p>
+      <input type="text" id="searchBar" class="form-control mb-4" placeholder="Search by name..." onkeyup="filterCards()">
+      
+      <div class="row" id="investorGrid">
+        <!-- Card 1 -->
+
+        <!-- Card 2 -->
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Anil Goel">
+            <img src="Anil Goel.png" class="card-img-top" alt="Anil Goel">
+            <div class="card-body">
+              <h3 class="card-title">Anil Goel</h3>
+              <p class="card-text">He starting inversment in the 90’s
+                His inversement st....</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Ashish Kacholia">
+            <img src="Ashish Kacholia.png" class="card-img-top" alt="Ashish Kacholia">
+            <div class="card-body">
+              <h3 class="card-title">Ashish Kacholia</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Ashish Dhawan">
+            <img src="Ashish Dhawan.png" class="card-img-top" alt="Ashish Dhawan">
+            <div class="card-body">
+              <h3 class="card-title">Ashish Dhawan</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Dolly Rajeev Khanna">
+            <img src="Dolly Rajeev Khanna.png" class="card-img-top" alt="Dolly Rajeev Khanna">
+            <div class="card-body">
+              <h3 class="card-title">Dolly Rajeev Khanna</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Hemendra Kothari">
+            <img src="Hemendra Kothari.png" class="card-img-top" alt="Hemendra Kothari">
+            <div class="card-body">
+              <h3 class="card-title">Hemendra Kothari</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div><div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Nemish Shah">
+            <img src="Nemish Shah.png" class="card-img-top" alt="Nemish Shah">
+            <div class="card-body">
+              <h3 class="card-title">Nemish Shah</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Porinju Veliyath">
+            <img src="Porinju Veliyath.png" class="card-img-top" alt="Porinju Veliyath">
+            <div class="card-body">
+              <h3 class="card-title">Porinju Veliyath</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Radhakishan Damani">
+            <img src="Radhakishan Damani.png" class="card-img-top" alt="Radhakishan Damani">
+            <div class="card-body">
+              <h3 class="card-title">Radhakishan Damani</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Rakesh Jhunjhunwala">
+            <img src="Rakesh Jhunjhunwala.png" class="card-img-top" alt="Rakesh Jhunjhunwala">
+            <div class="card-body">
+              <h3 class="card-title">Rakesh Jhunjhunwala</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Sunil Singhania">
+            <img src="Sunil Singhania.png" class="card-img-top" alt="Sunil Singhania">
+            <div class="card-body">
+              <h3 class="card-title">Sunil Singhania</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card" data-name="Vijay Kedia">
+            <img src="Vijay Kedia.png" class="card-img-top" alt="Vijay Kedia">
+            <div class="card-body">
+              <h3 class="card-title">Vijay Kedia</h3>
+              <p class="card-text">Famous for his mid-cap investments.</p>
+              <button class="btn btn-primary">View Holdings</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more cards as needed -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/Shark_Investors.js"></script>
+  <%- include("../includes/footer.ejs") %>

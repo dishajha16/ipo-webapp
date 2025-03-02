@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IPO Subscription</title>
+  <link rel="stylesheet" href="/css/ipo_subscription.css">
+  <!-- Include Bootstrap CSS if not already included in a parent template -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Load the external JavaScript file (make sure the path is correct) -->
+  <script defer src="/js/ipo_subscription.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>IPO Subscription</h2>
+  
+  <!-- Search Bar -->
+  <div class="search-bar my-3">
+    <input type="text" id="searchIPO" class="form-control" placeholder="Search IPO by company name...">
+  </div>
+
+  <!-- Table for IPO Subscriptions -->
+  <div class="table-responsive">
+    <table class="table table-hover" id="subscriptionTable">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Price Band</th>
+          <th>Open Date</th>
+          <th>Close Date</th>
+          <th>Issue Size</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="subscriptionTbody">
+        <!-- Dynamic rows will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination" id="subscriptionPagination">
+      <!-- Pagination buttons will be inserted here -->
+    </ul>
+  </nav>
+</div>
+
+<!-- Optionally include Bootstrap JS if not already included -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

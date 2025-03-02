@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/brokers.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+            <%- include("../includes/header.ejs") %>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+         
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#clients">Active Clients</a></li>
+                <li><a href="#charges">Charges</a></li>
+                <li><a href="#complaints">Complaints</a></li>
+                <li><a href="#shareholding">Shareholding</a></li>
+                <li><a href="#pros-cons">Pros & Cons</a></li>
+                <li><a href="#ratings">Ratings</a></li>
+                <li><a href="#financials">Financials</a></li>
+                <li><a href="#brokers-list">Brokers List</a></li> <!-- New Nav Item -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <section id="home" class="section active">
+                <h2 style="text-align: center;">Broker A vs. Broker B</h2>
+                <div class="broker-comparison">
+                    <div class="broker-cards">
+                        <img src="/angelone-logo.png" alt="Angel One">
+                        <h3>Angel One</h3>
+                        <p class="rating">⭐ 4.7</p>
+                        <button>Open Demat Account</button>
+                    </div>
+                    <div class="vs">vs</div>
+                    <div class="broker-cards">
+                        <img src="/zerodha-logo.png" width="220px" alt="Zerodha">
+                        <h3>Zerodha</h3>
+                        <p class="rating">⭐ 4.6</p>
+                        <button>Open Demat Account</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clients" class="section"><br>
+                <h2 style="text-align: center;">Active Clients</h2>
+                <canvas id="clientsChart"></canvas>
+            </section>
+
+            <section id="charges" class="section"><br>
+                <h2 style="text-align: center;">Brokerage Charges</h2>
+                <table>
+                    <tr><th>Type</th><th>Angel One</th><th>Zerodha</th></tr>
+                    <tr><td>Brokerage Charges</td><td>23.6</td><td>20</td></tr>
+                    <tr><td>Auto Square Off</td><td>20</td><td>15</td></tr>
+                    <tr><td>Call & Trade</td><td>15.34</td><td>15.93</td></tr>
+                </table>
+            </section>
+            <section id="complaints" class="section"><br>
+                <h2 style="text-align: center;">Complaints</h2>
+                <canvas id="complaintsChart"></canvas>
+            </section>
+
+            <section id="shareholding" class="section"><br>
+                <h2 style="text-align: center;">Shareholding</h2>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <canvas id="shareholdingChart"></canvas>
+                </div>
+            </section>
+
+            <section id="pros-cons" class="section"><br>
+                <h2 style="text-align: center;">Pros & Cons</h2>
+                <table>
+                    <tr><th>Pros</th><th>Cons</th></tr>
+                    <tr><td>Lower fees (Angel One)</td><td>Limited support (Angel One)</td></tr>
+                    <tr><td>More investment options (Zerodha)</td><td>Higher withdrawal fees (Zerodha)</td></tr>
+                </table>
+            </section>
+
+            <section id="ratings" class="section"><br>
+                <h2 style="text-align: center;">Ratings</h2>
+                <div class="ratings" style="display: flex; justify-content: space-around;">
+                    <div class="rating-card" style="text-align: center;">
+                        <h3>Angel One</h3>
+                        <p>⭐ 4.7</p>
+                        <p>Trust Factor: ★★★★★</p>
+                        <p>Ease of Use: ★★★★★</p>
+                        <p>Technology: ★★★★★</p>
+                        <button>Open Demat Account</button>
+                    </div>
+                    <div class="rating-card">
+                        <h3>Zerodha</h3>
+                        <p>⭐ 4.6</p>
+                        <p>Trust Factor: ★★★★★</p>
+                        <p>Ease of Use: ★★★★★</p>
+                        <p>Technology: ★★★★★</p>
+                        <button>Open Demat Account</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="financials" class="section"><br>
+                <h2 style="text-align: center;">Financials</h2>
+                <canvas id="financialChart"></canvas>
+            </section>
+
+            <!-- Brokers List Section -->
+            <section id="brokers-list" class="section">
+                <header>
+                    <h1>Made to <span class="highlight">Trade</span></h1>
+                </header>
+                <div id="brokers-list-content"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/brokers.js"></script>
+</body>
+
+<%- include("../includes/footer.ejs") %>
+</html>
