@@ -17,6 +17,6 @@ Start the server:
 node server.js
 
 Access the application:
-Open http://localhost:5000/listings in your browser.
+Open http://localhost:3001/listings in your browser.
 
 Technologies Used: Backend: Node.js, Express.js, Passport.js, Frontend: EJS, CSS, JavaScript, Database: MongoDB (Mongoose ODM), Authentication: JWT, APIs & Services: Public API integrations for IPO data
